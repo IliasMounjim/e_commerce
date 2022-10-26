@@ -35,7 +35,9 @@ body {
 }
 
 .brand {
+    font-family: 'Bungee', "Lato", sans-serif;
     font-weight: bolder;
+    color: navy;
 }
 
 .nav-link-wrapper {
