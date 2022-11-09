@@ -49,7 +49,7 @@ include('../view/header.php');
                     </div>
 
                     <div class="input-field button">
-                        <input type="button" value="Signup">
+                        <input type="submit" value="Signup">
                     </div>
                 </form>
 

@@ -20,9 +20,6 @@ if ($user_Action == null)
 if($user_Action == 'home')
 {
 
-
-
-
     include('../view/home.php');
 }
 
@@ -31,9 +28,6 @@ if($user_Action == 'home')
 
 if($user_Action == 'categories')
 {
-
-
-
 
     include('../view/categories.php');
 }
@@ -89,5 +83,13 @@ if($user_Action == 'register')
 {
 
 	include('../view/register.php');
+}
+
+
+
+if($user_Action == 'logged_in')
+{
+
+	include('../view/home.php');
 }
 ?>

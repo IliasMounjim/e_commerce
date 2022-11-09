@@ -23,7 +23,8 @@ include('../view/header.php');
                 <div class="form login">
                     <span class="title">Login</span>
 
-                    <form action="#">
+                    <form action="."method="post" id="add_emp_form">
+                        <input type="hidden" name="user_Action" value="logged_in">
                         <div class="input-field">
                             <input type="text" placeholder="Enter your email" required>
                             <i class="uil uil-envelope icon"></i>
@@ -44,7 +45,9 @@ include('../view/header.php');
                         </div>
 
                         <div class="input-field button">
-                            <input type="button" value="Login">
+                            
+                            <input type="submit" value="Login">
+                            
                         </div>
                     </form>
 

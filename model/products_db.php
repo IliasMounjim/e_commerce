@@ -1,9 +1,10 @@
+<?php
 require ('../model/database.php');
 
 
 
 //this functions retreives all the employees in our DB and inner joins the Job table to display the employees job description and charge per hour.
-function retreive_emp() {
+function get_products() {
     global $db;
     try {
     $query =    "SELECT EMP_NUM, EMP_LNAME, EMP_FNAME, EMP_INITIAL, EMP_HIREDATE, JOB_DESCRIPTION, JOB_CHARGE_HOUR
@@ -27,7 +28,7 @@ function retreive_emp() {
 
 
 //retreives one employee data to display the update-form with the  employees existing data.
-function get_emp($empNum) {
+function get_product($empNum) {
     global $db;
 
     try {
@@ -53,7 +54,7 @@ function get_emp($empNum) {
 
 
 //used later to show a dropdown option of jobs
-function get_jobs(){
+function get_authors(){
     global $db;
     $query =   "SELECT *
                 FROM Job 
@@ -75,7 +76,7 @@ function get_jobs(){
 }
 
 //used to determine the ID of the next employee because EMP_NUM is not an integere and we can't do Auto Increment.
-function getMaxID(){
+function getCategories(){
     global $db;
     //used later for Employee ID
     $query = "SELECT MAX(EMP_NUM) FROM Employee";
@@ -104,7 +105,7 @@ function getMaxID(){
 }
 
 //Adds new employee to the emp table.
-function add_emp($empNum, $fname, $lname, $initial, $hireDate ,$jobCode ) {
+function add_product($empNum, $fname, $lname, $initial, $hireDate ,$jobCode ) {
     $query = "INSERT INTO Employee (EMP_NUM, EMP_LNAME, EMP_FNAME, EMP_INITIAL, EMP_HIREDATE, JOB_CODE) 
     VALUES (:empNum, :fname,:lname,:initial,:hireDate, :jobCode)";
     global $db;
@@ -135,7 +136,7 @@ function add_emp($empNum, $fname, $lname, $initial, $hireDate ,$jobCode ) {
 
 
 //updates an existing employee with $empID, if user only changed one field, all the other pre-existing info is sent as well to  make sure a uniform  update occurs.
-function update_emp($empNum, $fname, $lname, $initial, $hireDate ,$jobCode, $updateID ) {
+function update_product($empNum, $fname, $lname, $initial, $hireDate ,$jobCode, $updateID ) {
     $query = "UPDATE Employee SET EMP_LNAME=:lname,EMP_FNAME=:fname,  EMP_INITIAL=:initial, EMP_HIREDATE=:hireDate, JOB_CODE =:jobCode
                   WHERE EMP_NUM =:updateID";         
     global $db;   
