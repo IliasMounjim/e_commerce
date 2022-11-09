@@ -7,5 +7,5 @@
  */
 
 // Redirect to controller index
-header("Location: controller/controller.php");
+header("Location: controller/index.php");
 ?>

@@ -3,7 +3,7 @@ body {
     margin: 0px;
 }
 
-.container {
+.container1 {
     display: grid;
     grid-template-columns: 1fr;
 }
@@ -11,7 +11,8 @@ body {
 .nav-wrapper {
     display: flex;
     justify-content: space-between;
-    padding: 38px;
+    padding: 30px;
+    height: 70px;
 }
 
 .left-side {
@@ -37,7 +38,7 @@ body {
 .brand {
     font-family: 'Bungee', "Lato", sans-serif;
     font-weight: bolder;
-    color: navy;
+    color: #4070f4;
 }
 
 .nav-link-wrapper {
@@ -68,8 +69,6 @@ body {
     color: black;
 }
 
-.form-wrapper {
-    margin: auto;
-    width: 400px;
-    height: 100%;
-}
+
+/*  Sign up sign in 
+*/

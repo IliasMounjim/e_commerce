@@ -26,6 +26,9 @@ if($user_Action == 'home')
     include('../view/home.php');
 }
 
+
+
+
 if($user_Action == 'categories')
 {
 
@@ -34,6 +37,37 @@ if($user_Action == 'categories')
 
     include('../view/categories.php');
 }
+
+
+if($user_Action == 'authors')
+{
+
+
+
+
+    include('../view/authors.php');
+}
+
+
+
+
+if($user_Action == 'products')
+{
+
+    include('../view/products_list.php');
+}
+
+
+
+if($user_Action == 'add_products')
+{
+
+
+
+
+    include('../view/add_products.php');
+}
+
 
 if($user_Action == 'orders')
 {
@@ -49,5 +83,11 @@ if($user_Action == 'login')
 {
 
 	include('../view/login.php');
+}
+
+if($user_Action == 'register')
+{
+
+	include('../view/register.php');
 }
 ?>

@@ -1,5 +1,4 @@
 <?php
-
 include('../view/header.php');
 ?>
 
@@ -9,12 +8,13 @@ include('../view/header.php');
     
 
       <div class="welcome-wrapper" style="text-align:center">
-        <h1>No Categories yet <br> E-commerce website coming soon </h1>
+        <h1>Add book Form </h1>
       </div>
 
       
 
 
-   </main> 
-  
+    </main> 
+
+
 <?php include('../view/footer.php'); ?>
