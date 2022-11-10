@@ -19,7 +19,7 @@ if ($user_Action == null)
 
 if($user_Action == 'home')
 {
-
+    $all_books = select_all_books();
     include('../view/home.php');
 }
 
