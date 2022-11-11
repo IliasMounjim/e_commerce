@@ -27,10 +27,13 @@ error_reporting (E_ALL);
 
 </head>
 </header>
-<?php 
-    $current_query = $_SERVER['QUERY_STRING'];
-    $current_page = explode("=", $current_query);
-    //echo $current_page[1];
+<?php
+    if(isset($_SERVER['QUERY_STRING']))
+    {
+        $current_query = $_SERVER['QUERY_STRING'];
+        $current_page = explode("=", $current_query);
+        //echo $current_page[1];
+    }
 ?>
 </div>
 
