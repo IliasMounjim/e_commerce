@@ -1,6 +1,7 @@
 <?php  
 
 require("../model/database.php");
+require("../model/retrieve_product.php");
 
 // Check user action to determine what they want to do
 $user_Action = filter_input (INPUT_POST, 'user_Action');
