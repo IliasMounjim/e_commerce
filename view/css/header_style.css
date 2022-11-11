@@ -72,3 +72,14 @@ body {
 
 /*  Sign up sign in 
 */
+
+
+/* home page*/
+.product_image{
+    width: 250px;
+    height: 300px;
+}
+
+.inline{
+    display:inline;
+}
