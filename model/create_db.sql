@@ -9,51 +9,52 @@ USE e_commerce;
 
 -- categories in our book store will be the genre of the book
 -- For example, sci-fi, novel, horror
-CREATE TABLE categories (
- categoryID       INT(11)        NOT NULL   AUTO_INCREMENT,
- categoryName     VARCHAR(255)   NOT NULL,
- PRIMARY KEY (categoryID)
+CREATE TABLE genres (
+ genreID       INT(11)        NOT NULL   AUTO_INCREMENT,
+ genreName     VARCHAR(255)   NOT NULL,
+ PRIMARY KEY (genreID)
 );
 
 
 
-CREATE TABLE products (
- productID         INT            NOT NULL   AUTO_INCREMENT,
- categoryID        INT            NOT NULL,
- productName       VARCHAR(255)   NOT NULL,
- productDescription       TEXT           NOT NULL,
+CREATE TABLE books (
+ bookID         INT            NOT NULL   AUTO_INCREMENT,
+ genreID        INT            NOT NULL,
+ bookName       VARCHAR(255)   NOT NULL,
+ bookDescription       TEXT           NOT NULL,
  listPrice         DECIMAL(10,2)  NOT NULL,
  discountPercent   DECIMAL(10,2)  NOT NULL   DEFAULT 0.00,
  isbn              VARCHAR(255)   NOT NULL,
  authors           VARCHAR(255)   NOT NULL,
  publisher         VARCHAR(255)   NOT NULL,
  pictureName       VARCHAR(255)   NOT NULL,
- PRIMARY KEY (productID), 
- FOREIGN KEY (categoryID) REFERENCES categories(categoryID)
+ PRIMARY KEY (bookID), 
+ FOREIGN KEY (genreID) REFERENCES genres(genreID)
 );
 
 CREATE TABLE users (
  userID        INT            NOT NULL   AUTO_INCREMENT,
  
  /*
- 1 is visitor, they can view and search products, everyone that enters the site without cookies stored, they will be viewed as visitors
- 2 is normal user, they can use shopping cart, view/search products, and checks out. When a new user try to register, they will be assigned as a normal user
- 3 is administrator, we will have a few pre-define admin accounts, they can add/delete/update/select products
+ 1 is visitor, they can view and search books, everyone that enters the site without cookies stored, they will be viewed as visitors
+ 2 is normal user, they can use shopping cart, view/search books, and checks out. When a new user try to register, they will be assigned as a normal user
+ 3 is administrator, we will have a few pre-define admin accounts, they can add/delete/update/select books
  */
  privileges        INT            NOT NULL,
  
  emailAddress      VARCHAR(255)   NOT NULL,
- password          VARCHAR(60)    NOT NULL,
+ userPassword          VARCHAR(60)    NOT NULL,
  firstName         VARCHAR(60)    NOT NULL,
  lastName          VARCHAR(60)    NOT NULL,
  shipAddressID     INT            DEFAULT NULL,
  billingAddressID  INT            DEFAULT NULL,
  PRIMARY KEY (userID),
- UNIQUE INDEX emailAddress (emailAddress)/*,*/
-
- /* Reference to addresses table, I used a command below at line, foreign key in table do not work, errno: 150 "Foreign key constraint is incorrectly formed
+ UNIQUE INDEX emailAddress (emailAddress),
  INDEX shipAddressID(shipAddressID),
- INDEX billingAddressID(billingAddressID),
+ INDEX billingAddressID(billingAddressID)
+
+ /* Reference to addresses table, I used a command below at line 159 & 160, foreign key in table do not work, errno: 150 "Foreign key constraint is incorrectly formed
+ 
  FOREIGN KEY (shipAddressID) REFERENCES addresses(addressID),
  FOREIGN KEY (billingAddressID) REFERENCES addresses(addressID)
  */
@@ -66,10 +67,10 @@ CREATE TABLE addresses (
  line1             VARCHAR(60)    NOT NULL,
  line2             VARCHAR(60)               DEFAULT NULL,
  city              VARCHAR(40)    NOT NULL,
- state             VARCHAR(2)     NOT NULL,
+ address_State             VARCHAR(2)     NOT NULL,
  zipCode           VARCHAR(10)    NOT NULL,
  phone             VARCHAR(12)    NOT NULL,
- disabled          TINYINT(1)     NOT NULL   DEFAULT 0,
+ address_Disabled          TINYINT(1)     NOT NULL   DEFAULT 0,
  PRIMARY KEY (addressID),
  INDEX userID(userID),
  FOREIGN KEY (userID) REFERENCES users(userID)
@@ -97,9 +98,9 @@ CREATE TABLE orderItems (
  orderID           INT            NOT NULL,
 
  
- productID         INT            NOT NULL,
+ bookID         INT            NOT NULL,
 
- /* Do we need these two in here tho? Cuz it can reference products.productID*/
+ /* Do we need these two in here tho? Cuz it can reference books.bookID*/
  itemPrice         DECIMAL(10,2)  NOT NULL,
  discountAmount    DECIMAL(10,2)  NOT NULL,
  
@@ -107,8 +108,8 @@ CREATE TABLE orderItems (
  quantity          INT            NOT NULL,
  PRIMARY KEY (itemID), 
  INDEX orderID (orderID), 
- INDEX productID (productID),
- FOREIGN KEY (productID) REFERENCES products(productID),
+ INDEX bookID (bookID),
+ FOREIGN KEY (bookID) REFERENCES books(bookID),
  FOREIGN KEY (orderID) REFERENCES orders(orderID)
 );
 
@@ -123,11 +124,11 @@ GRANT SELECT, INSERT, DELETE, UPDATE
 ON * 
 TO mgs_user@localhost;
 GRANT SELECT 
-ON products
+ON books
 TO mgs_tester@localhost;
 
 
-INSERT INTO `categories`(`categoryName`) VALUES
+INSERT INTO `genres`(`genreName`) VALUES
 ('Arts'),
 ('Sci-Fi'),
 ('Education'),
@@ -135,7 +136,7 @@ INSERT INTO `categories`(`categoryName`) VALUES
 ('Science'),
 ('Comic');
 
-INSERT INTO `products`(`categoryID`, `productName`, `productDescription`, `listPrice`, `discountPercent`, `isbn`, `authors`, `publisher`, `pictureName`) VALUES
+INSERT INTO `books`(`genreID`, `bookName`, `bookDescription`, `listPrice`, `discountPercent`, `isbn`, `authors`, `publisher`, `pictureName`) VALUES
 ('1','Picasso Sculpture',"The most in-depth account of the lives of Picasso's sculptures.",'82.55','0.00','0870709747','Ann Temkin','The Museum of Modern Art, New York','../view/pic/Picasso.jpg'),
 ('1','Origami Extravaganza! Folding Paper, a Book, and a Box',"Make dozens of fun and easy origami projects with this colossal origami kit.",'14.39','0.05','0804832420','Tuttle Publishing','Tuttle Publishing','../view/pic/Origami.jpg'),
 ('2', 'The Dark Forest', "In The Dark Forest, Earth is reeling from the revelation of a coming alien invasion-in just four centuries' time.", '28.34', '0.10', '9780765377081', 'Cixin Liu', 'Tor Books', '../view/pic/Dark_Forest.jpg'),
@@ -150,7 +151,7 @@ INSERT INTO `products`(`categoryID`, `productName`, `productDescription`, `listP
 ('6', 'Spider-Man', "Taking on both writing and art duties, McFarlane ushered Peter Parker into a gritty new era", '43.99', '0.00', '1302923730', 'Todd McFarlane', 'Marvel', '../view/pic/Spider-Man.jpg');
 
 
-INSERT INTO `users`(`privileges`, `emailAddress`, `password`, `firstName`, `lastName`) VALUES 
+INSERT INTO `users`(`privileges`, `emailAddress`, `userPassword`, `firstName`, `lastName`) VALUES 
 ('3','Eli','123','admin','Eli'),
 ('3','Lin','123','admin','Lin'),
 ('1','','','Dear','Visitor');
