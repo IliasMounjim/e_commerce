@@ -20,7 +20,10 @@ if ($user_Action == null)
 
 if($user_Action == 'home')
 {
+    // To hold all books' data
     $all_books = select_all_books();
+
+    
     include('../view/home.php');
 }
 
