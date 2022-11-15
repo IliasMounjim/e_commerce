@@ -7,7 +7,7 @@ function select_all_books()
     global $db;
 
     // Get books
-    $select_query ='SELECT * FROM products';
+    $select_query ='SELECT * FROM books';
     // Run the query
     $select_statement = $db->prepare($select_query);
 
@@ -28,7 +28,7 @@ function select_all_genre()
     global $db;
 
     // Get employee list
-    $select_query ='SELECT * FROM categories';
+    $select_query ='SELECT * FROM genres';
     // Run the query
     $select_statement = $db->prepare($select_query);
 
@@ -49,7 +49,7 @@ function select_by_book_name($book_name)
     global $db;
 
     // Get all books if its name contain certain key words
-    $select_query = "SELECT * FROM `products` WHERE products.productName LIKE '%:book%'";
+    $select_query = "SELECT * FROM `books` WHERE books.bookName LIKE '%:book%'";
     $select_statement = $db->prepare($select_query);
 
     //bind value
@@ -79,7 +79,7 @@ function select_by_genre($genre)
     global $db;
 
     // Get all books that belongs a genre
-    $select_query = 'SELECT * FROM products WHERE products.categoryID  = :genre';
+    $select_query = 'SELECT * FROM genres WHERE genres.genreID  = :genre';
     $select_statement = $db->prepare($select_query);
 
     //bind value
@@ -95,13 +95,14 @@ function select_by_genre($genre)
     return $select_genre;
 }
 
+
 // Takes author name and returns all book that were writen by that author
 function select_by_author($author_name)
 {
     global $db;
 
     // Get all books that belongs an author
-    $select_query = "SELECT * FROM products WHERE products.authors = ':author'";
+    $select_query = "SELECT * FROM books WHERE books.authors = ':author'";
     $select_statement = $db->prepare($select_query);
 
     //bind value
@@ -125,7 +126,7 @@ function select_by_isbn($isbn)
     global $db;
 
     // Find the book that has the matched isbn
-    $select_query = "SELECT * FROM products WHERE products.isbn = :isbn";
+    $select_query = "SELECT * FROM books WHERE books.isbn = :isbn";
     $select_statement = $db->prepare($select_query);
 
     //bind value
@@ -141,6 +142,7 @@ function select_by_isbn($isbn)
     return $select_isbn;
 }
 
+/*
 //this functions retreives all the employees in our DB and inner joins the Job table to display the employees job description and charge per hour.
 function get_products() {
     global $db;
@@ -323,5 +325,6 @@ function delete_emp($deleteID ) {
         include('../view/error.php');
     }
 }
+*/
 
 ?>
