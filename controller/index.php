@@ -1,6 +1,7 @@
 <?php  
 
 require("../model/database.php");
+require("../model/retrieve_product.php");
 
 // Check user action to determine what they want to do
 $user_Action = filter_input (INPUT_POST, 'user_Action');
@@ -19,7 +20,10 @@ if ($user_Action == null)
 
 if($user_Action == 'home')
 {
+    // To hold all books' data
+    $all_books = select_all_books();
 
+    
     include('../view/home.php');
 }
 
