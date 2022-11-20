@@ -13,7 +13,7 @@ include('../view/header.php');
     <?php for($x = 0; $x < sizeof($book_genres); $x++) {?>
 
       <!-- The categories -->
-      <a class="button" href="../controller/index.php?user_Action=categories_result&genre=<?php echo $book_genres[$x]['genreID'] ;?>"><?php echo $book_genres[$x]['genreName']?></a>
+      <a class="button" href="../controller/index.php?user_Action=categories_result&genre=<?php echo $book_genres[$x]['genreID'];?>"><?php echo $book_genres[$x]['genreName'];?></a>
 
     <?php }?>
   </div>
