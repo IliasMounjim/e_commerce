@@ -192,3 +192,15 @@ a.button:hover{
     border-bottom:3px #4070f4;
     color:#f1f2f3;
 }
+
+/* 11/20/2022 style for smaller button in categories.php */
+#c-border{
+    width: 90%;
+
+    /* width of the wraper, larger width then more books on each row, now it dsiplays 3 books each row*/
+    max-width: 1000px;
+    margin: 50px auto;
+
+    /* Font*/ 
+    font-family: Calluna, Arial;
+}
