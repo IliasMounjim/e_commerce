@@ -28,12 +28,25 @@ if($user_Action == 'home')
 }
 
 
-
-
+/* 11/20/2022 this ask user for a genre they want to find */ 
 if($user_Action == 'categories')
 {
-
+    $book_genres = select_all_genre();
     include('../view/categories.php');
+}
+
+/* 11/20/2022 this display what user choose in categories.php */
+if($user_Action == 'categories_result')
+{
+    if(isset($_GET['genre']))
+    {
+        $genreId = $_GET['genre'];
+    }
+
+    $select_books = select_by_genre($genreId);
+
+
+    include('../view/categories_result.php');
 }
 
 

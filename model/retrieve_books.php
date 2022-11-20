@@ -67,6 +67,8 @@ function select_by_book_name($book_name)
 
 
 
+/* 11/20/2022 */
+
 // Get product by its type, aka genre of the book
 // 1 = arts
 // 2 = Sci-Fi
@@ -79,7 +81,7 @@ function select_by_genre($genre)
     global $db;
 
     // Get all books that belongs a genre
-    $select_query = 'SELECT * FROM genres WHERE genres.genreID  = :genre';
+    $select_query = 'SELECT * FROM books WHERE books.genreID  = :genre';
     $select_statement = $db->prepare($select_query);
 
     //bind value
@@ -88,7 +90,7 @@ function select_by_genre($genre)
 
     // Executes, gets the result to local array and frees up connection
     $select_statement->execute();
-    $select_genre = $select_statement->fetch();
+    $select_genre = $select_statement->fetchAll();
     $select_statement->closeCursor();
 
     // Return the data of books
