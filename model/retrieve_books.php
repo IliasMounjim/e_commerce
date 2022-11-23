@@ -41,6 +41,31 @@ function select_all_genre()
     return $book_genres;
 }
 
+
+
+// Get the book using book id
+function select_by_id($book_Id)
+{
+    global $db;
+
+    // Get all books if its name contain certain key words
+    $select_query = 'SELECT * FROM books WHERE books.bookID = :bookid';
+    $select_statement = $db->prepare($select_query);
+
+    //bind value
+    $select_statement->bindValue(':bookid', $book_Id);
+
+
+    // Executes, gets the result to local array and frees up connection
+    $select_statement->execute();
+    $select_book = $select_statement->fetch();
+    $select_statement->closeCursor();
+
+    // Return the data of books
+    return $select_book;
+}
+
+
 // Function that do the search in the home
 // we may need to modify the query, I think it needs a ORDER BY clause to order the data it retrieve
 // but I'm quite sure how
