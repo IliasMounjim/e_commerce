@@ -40,7 +40,7 @@ include('../view/header.php');
                 </span>
 
                 <!-- The buy button -->
-                <a class="button" href="#">Buy</a>
+                <a class="button" href="../controller/index.php?user_Action=book&bookId=<?php echo $select_books[$x]['bookID'];?>">Buy</a>
                     
 	        </figure>
         
