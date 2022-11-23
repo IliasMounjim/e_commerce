@@ -36,17 +36,41 @@ if($user_Action == 'categories')
 }
 
 /* 11/20/2022 this display what user choose in categories.php */
+/* 11/22/2022 updated else condition */
 if($user_Action == 'categories_result')
 {
     if(isset($_GET['genre']))
     {
         $genreId = $_GET['genre'];
+
+        $select_books = select_by_genre($genreId);
+
+
+        include('../view/categories_result.php');
     }
+    else
+    {
+        include('../view/error.php');
+    }
+}
 
-    $select_books = select_by_genre($genreId);
+// 11/22/2022
+if($user_Action =='book')
+{
+    if(isset($_GET['bookId']))
+    {
+        $bookId = $_GET['bookId'];
+
+        $select_book = select_by_id($bookId);
 
 
-    include('../view/categories_result.php');
+        include('../view/book.php');
+    }
+    else
+    {
+        include('../view/error.php');
+    }
+    
 }
 
 
@@ -61,12 +85,6 @@ if($user_Action == 'authors')
 
 
 
-
-if($user_Action == 'products')
-{
-
-    include('../view/products_list.php');
-}
 
 
 
