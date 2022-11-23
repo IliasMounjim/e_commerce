@@ -81,7 +81,7 @@ body {
     /* width of the wraper, larger width then more books on each row, now it dsiplays 3 books each row*/
     max-width: 1450px;
     margin: 50px auto;
-    
+
     /* Font*/ 
     font-family: Calluna, Arial;
 }
@@ -178,7 +178,7 @@ a.button{
     display:block;
     text-align:center;
     color:#fff;
-    transition:all 1s linear;
+    transition:all 0.1s linear;
     text-decoration:none;
     text-shadow:1px 1px 3px rgba(0,0,0,0.3);
     border-radius:3px;
@@ -186,11 +186,15 @@ a.button{
     box-shadow:1px 1px 3px rgba(0,0,0,0.3);
 }
 
-/* color during hover effect is activated*/
+/* color during hover effect */
 a.button:hover{
     background:#4070f4;
     border-bottom:3px #4070f4;
     color:#f1f2f3;
+
+    -webkit-transform: scale(1.02);
+    -moz-transform:scale(1.02);
+    transform: scale(1.02);
 }
 
 /* 11/20/2022 style for smaller button in categories.php */
@@ -203,4 +207,114 @@ a.button:hover{
 
     /* Font*/ 
     font-family: Calluna, Arial;
+}
+
+
+/* 11/22/2022 */
+/* book detail page*/
+#border_book_page{
+
+    /* using 80% of the max space*/
+    width: 80%;
+
+    /* width of the wraper*/
+    max-width: 1500px;
+
+    /* margin to the center of the page*/
+    margin: 100px auto;
+
+    /* Font*/ 
+    font-family: Calluna, Arial;
+}
+
+
+  /* The border around book details*/
+div#book_page figure {
+    
+    /* move to right, down */
+    margin: 0 50px 35px;
+    
+    /* space in between buy button and border */
+    padding-bottom: 5px;
+
+
+    /* opacity of the whole page*/
+    opacity: 1;
+
+    /* animation duration of the hover effect*/
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+
+    /* if text too long, break to new line and add hyphen if a word is broken*/
+    word-wrap:break-word;
+    hyphens: auto;
+
+}
+
+  /* image of the book*/
+div#book_page figure img {
+
+    /* Set image size */
+    width: 490px;
+    height: 600px;
+
+    /* display on the left*/
+    float:left;
+}
+  
+/* output books' detail, including book name, description, isbn, author, publisher*/
+div#book_page figure figcaption {
+
+    /* position of text, move downward and to the right*/
+    padding-top: 5em;
+    margin-left: 38em;
+    
+
+    /*bold or not */
+    font-weight:500;
+
+}
+
+/* add to cart button*/
+a.toCart{
+
+    /*size of the button*/
+    height:45px;
+    width:1500px;
+
+    /*color*/
+    background:#4070f4;
+
+    display:block;
+
+    /* position of the button*/
+    margin-top: 15em;
+
+    /* text of the button*/
+    text-align:center;
+    line-height: 40px;
+
+    /* effect configurations*/
+    color:#fff;
+    transition:all 0.2s;
+    text-decoration:none;
+    text-shadow:1px 1px 3px rgba(0,0,0,0.3);
+    border-radius:3px;
+    border-bottom:10px solid #4070f4;
+    box-shadow:1px 1px 3px rgba(0,0,0,0.3);
+}
+
+/* effect */
+a.toCart:hover{
+    /* color during hover effect*/
+    background:#4070f4;
+    color:#f1f2f3;
+
+    /* scale of hover enlarge effect larger number bigger button*/
+    -webkit-transform: scale(1.02);
+    -moz-transform:scale(1.02);
+    transform: scale(1.02);
+
 }
