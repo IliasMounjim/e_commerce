@@ -74,7 +74,7 @@ function select_by_book_name($book_name)
     global $db;
 
     // Get all books if its name contain certain key words
-    $select_query = "SELECT * FROM `books` WHERE books.bookName LIKE '%:book%'";
+    $select_query = "SELECT * FROM books WHERE books.bookName LIKE CONCAT('%', :book, '%')";
     $select_statement = $db->prepare($select_query);
 
     //bind value
@@ -83,13 +83,12 @@ function select_by_book_name($book_name)
 
     // Executes, gets the result to local array and frees up connection
     $select_statement->execute();
-    $select_book_name = $select_statement->fetch();
+    $select_book_name = $select_statement->fetchAll();
     $select_statement->closeCursor();
 
     // Return the data of books
     return $select_book_name;
 }
-
 
 
 /* 11/20/2022 */
@@ -129,7 +128,7 @@ function select_by_author($author_name)
     global $db;
 
     // Get all books that belongs an author
-    $select_query = "SELECT * FROM books WHERE books.authors = ':author'";
+    $select_query = "SELECT * FROM books WHERE books.authors LIKE CONCAT('%', :author, '%')";
     $select_statement = $db->prepare($select_query);
 
     //bind value
@@ -138,7 +137,7 @@ function select_by_author($author_name)
 
     // Executes, gets the result to local array and frees up connection
     $select_statement->execute();
-    $select_author = $select_statement->fetch();
+    $select_author = $select_statement->fetchAll();
     $select_statement->closeCursor();
 
     // Return the data of books
@@ -153,7 +152,7 @@ function select_by_isbn($isbn)
     global $db;
 
     // Find the book that has the matched isbn
-    $select_query = "SELECT * FROM books WHERE books.isbn = :isbn";
+    $select_query = "SELECT * FROM books WHERE books.isbn LIKE CONCAT('%', :isbn, '%')";
     $select_statement = $db->prepare($select_query);
 
     //bind value
@@ -162,11 +161,34 @@ function select_by_isbn($isbn)
 
     // Executes, gets the result to local array and frees up connection
     $select_statement->execute();
-    $select_isbn = $select_statement->fetch();
+    $select_isbn = $select_statement->fetchAll();
     $select_statement->closeCursor();
 
     // Return the data of the book
     return $select_isbn;
+}
+
+// 11/30/2022
+// Takes author name and returns all book that were writen by that author
+function select_by_publisher($publisher_name)
+{
+    global $db;
+
+    // Get all books that belongs an author
+    $select_query = "SELECT * FROM books WHERE books.publisher LIKE CONCAT('%', :publisher, '%')";
+    $select_statement = $db->prepare($select_query);
+
+    //bind value
+    $select_statement->bindValue(':publisher', $publisher_name);
+
+
+    // Executes, gets the result to local array and frees up connection
+    $select_statement->execute();
+    $select_publisher = $select_statement->fetchAll();
+    $select_statement->closeCursor();
+
+    // Return the data of books
+    return $select_publisher;
 }
 
 /*
