@@ -3,7 +3,7 @@
 function get_user($userID) {
     global $db;
     $query = 'SELECT * FROM users
-              WHERE id = :userID';    
+              WHERE userID = :userID';    
     $statement = $db->prepare($query);
     $statement->bindValue(':userID', $userID);
     $statement->execute();    

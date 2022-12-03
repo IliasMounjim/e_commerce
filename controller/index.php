@@ -379,6 +379,7 @@ if($user_Action == 'addUser')
         //echo $emailAddress, $userPassword, $userName;
         //echo gettype($emailAddress), gettype($userPassword), gettype($userName);
 
+        $name='userName';
         $id= add_user($emailAddress, $userPassword, $userName);
         
 	    include('../view/registerAddress.php');
@@ -386,7 +387,7 @@ if($user_Action == 'addUser')
         // header("Location: ../controller/index.php?user_Action=registerAddress");
         $value=$id;
         $expiration = time()+(60*60*24*7);
-        setcookie($userName, $value, $expiration);
+        setcookie($name, $value, $expiration);
 
         //echo $id;
 
@@ -443,27 +444,74 @@ if($user_Action == 'addAddress')
 if($user_Action == 'logged_in')
 {
 
-        $emailAddress = filter_input(INPUT_POST, 'emailAddress');
-        $userPassword = filter_input(INPUT_POST, 'userPassword');
-        $pass = is_valid_user($emailAddress, $userPassword);
-        if ($pass) {
-            $_SESSION['is_valid'] = true;
-            echo "LOGGED IN";
-            $id = valid_userID($emailAddress);
-            $value=$id;
-            $userName = valid_userName($emailAddress);
+    $emailAddress = filter_input(INPUT_POST, 'emailAddress');
+    $userPassword = filter_input(INPUT_POST, 'userPassword');
+    $pass = is_valid_user($emailAddress, $userPassword);
+    if ($pass) {
+        $_SESSION['is_valid'] = true;
+        echo "LOGGED IN\n";
+        $id = valid_userID($emailAddress);
 
-            $expiration = time()+(60*60*24*7);
-            setcookie($userName, $value, $expiration);
-            header("Location: ../controller/index.php?user_Action=home");
-        }
-        else {
-            echo "NOT LOGGEDIN";
-            //header("Location: ../controller/index.php?user_Action=login");
-        }	
+        $value=$id;
+        $name='userName';
+        $userName = valid_userName($emailAddress);
+        
+    
+        $expiration = time()+(60*60*24*7);
+        setcookie($name, $value, $expiration);
+        //echo $id, $userName;
+        header("Location: ../controller/index.php?user_Action=home");
+
         
     }
-	
+    else {
+        echo "NOT LOGGEDIN";
+        //header("Location: ../controller/index.php?user_Action=login");
+    }	
+    
+}
+
+if($user_Action == 'profile')
+{
+    
+    include('../view/profile.php');
+}
+
+
+if($user_Action == 'logout')
+{
+    if (isset($_COOKIE['UserName'])) {
+        $value = filter_input (INPUT_COOKIE, 'userName', FILTER_VALIDATE_INT);
+        //print_r($_COOKIE);
+        if ($value === false || $value == 0) {
+             echo "No USER Found\n";
+        }
+        else {
+            $user = get_user($value);
+            $customer = $user['userName'];
+            //echo "USER: ", $customer;
+            echo "LOGGED IN\n";
+            $id = valid_userID($emailAddress);
+            $value=$id;
+            $name='userName';
+            $userName = valid_userName($emailAddress);
+            
+            
+            $expiration = time()+(-999999);
+            setcookie($name, $value, $expiration);
+            $_SESSION['is_valid'] = false;
+            unset($_SESSION['userName']);
+            session_unset();
+            session_destroy();
+            //echo $id, $userName;
+            header("Location: ../controller/index.php?user_Action=home");
+            
+
+        }
+    }
+}
+
+
 
 
 
