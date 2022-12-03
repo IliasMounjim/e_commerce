@@ -5,6 +5,7 @@ require("../model/database.php");
 require("../model/retrieve_books.php");
 require("../model/user_db.php");
 require("../model/add_delete_update_books.php");
+require("../model/order_functions.php");
 
 // Check user action to determine what they want to do
 $user_Action = filter_input (INPUT_POST, 'user_Action');
