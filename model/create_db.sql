@@ -46,17 +46,9 @@ CREATE TABLE users (
  userPassword          VARCHAR(60)    NOT NULL,
  userName         VARCHAR(60)    NOT NULL,
  shipAddressID     INT            DEFAULT NULL,
- billingAddressID  INT            DEFAULT NULL,
  PRIMARY KEY (userID),
  UNIQUE INDEX emailAddress (emailAddress),
- INDEX shipAddressID(shipAddressID),
- INDEX billingAddressID(billingAddressID)
-
- /* Reference to addresses table, I used a command below at line 159 & 160, foreign key in table do not work, errno: 150 "Foreign key constraint is incorrectly formed
- 
- FOREIGN KEY (shipAddressID) REFERENCES addresses(addressID),
- FOREIGN KEY (billingAddressID) REFERENCES addresses(addressID)
- */
+ INDEX shipAddressID(shipAddressID)
 );
 
 
