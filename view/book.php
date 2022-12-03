@@ -24,6 +24,7 @@ include('../view/header.php');
                     <!-- display book name, description, isbn, authors and publisher -->
                     <h2><?php echo $select_book['bookName'];?></h2><br><br><br>
                     <?php echo "Description: ".$select_book['bookDescription']; ?><br><br>
+                    <?php echo "Category: ".$genre[0]; ?><br><br>
                     <?php echo "isbn: ".$select_book['isbn']; ?><br><br>
                     <?php echo "author(s): ".$select_book['authors']; ?><br><br>
                     <?php echo "publisher: ".$select_book['publisher']; ?><br><br>
