@@ -11,17 +11,7 @@ function get_user($userID) {
     $statement->closeCursor();    
     return $user;
 }
-function get_userID($userID) {
-    global $db;
-    $query = 'SELECT * FROM users
-              WHERE id = :userID';    
-    $statement = $db->prepare($query);
-    $statement->bindValue(':userID', $userID);
-    $statement->execute();    
-    $user = $statement->fetch();
-    $statement->closeCursor();    
-    return $user;
-}
+
 
 //function add_user($emailAddress, $userPassword, $userName, $shipAddressID, $billingAddressID)
 function add_user($emailAddress, $userPassword, $userName) {
