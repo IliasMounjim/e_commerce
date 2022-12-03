@@ -483,7 +483,7 @@ if($user_Action == 'profile')
 
 if($user_Action == 'logout')
 {
-    if (isset($_COOKIE['UserName'])) {
+    if (isset($_COOKIE['userName'])) {
         $value = filter_input (INPUT_COOKIE, 'userName', FILTER_VALIDATE_INT);
         //print_r($_COOKIE);
         if ($value === false || $value == 0) {
