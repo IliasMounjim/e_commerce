@@ -30,7 +30,7 @@ error_reporting (E_ALL);
 
 </head>
 </header>
-<?php
+<?php 
     if(isset($_SERVER['QUERY_STRING']))
     {
         $current_query = $_SERVER['QUERY_STRING'];
@@ -38,6 +38,7 @@ error_reporting (E_ALL);
         //echo $current_page[1];
 
     }
+    
 ?>
 </div>
 
@@ -81,10 +82,10 @@ error_reporting (E_ALL);
 
 
     <div class="right-side">
-    <div class="nav-link-wrapper <?php if (isset($current_page) && $current_page[1] == 'login') echo 'active-nav-link';?>">
+    <div class="nav-link-wrapper <?php if (isset($current_page)&&$current_page[1] == 'login') echo 'active-nav-link';?>">
         <a href="../controller/index.php?user_Action=login">Login</a>
     </div>
-    <div class="nav-link-wrapper <?php if (isset($current_page) && $current_page[1] == 'register') echo 'active-nav-link';?>">
+    <div class="nav-link-wrapper <?php if (isset($current_page)&&$current_page[1] == 'register') echo 'active-nav-link';?>">
         <a href="../controller/index.php?user_Action=register">Sign Up</a>
     </div>
                 

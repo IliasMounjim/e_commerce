@@ -168,6 +168,29 @@ function select_by_isbn($isbn)
     return $select_isbn;
 }
 
+// 11/30/2022
+// Takes author name and returns all book that were writen by that author
+function select_by_publisher($publisher_name)
+{
+    global $db;
+
+    // Get all books that belongs an author
+    $select_query = "SELECT * FROM books WHERE books.publisher LIKE CONCAT('%', :publisher, '%')";
+    $select_statement = $db->prepare($select_query);
+
+    //bind value
+    $select_statement->bindValue(':publisher', $publisher_name);
+
+
+    // Executes, gets the result to local array and frees up connection
+    $select_statement->execute();
+    $select_publisher = $select_statement->fetchAll();
+    $select_statement->closeCursor();
+
+    // Return the data of books
+    return $select_publisher;
+}
+
 /*
 //this functions retreives all the employees in our DB and inner joins the Job table to display the employees job description and charge per hour.
 function get_products() {
