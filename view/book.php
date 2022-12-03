@@ -43,10 +43,11 @@ include('../view/header.php');
         </figure>
     </div>
 
-    <!-- order button -->
+   <!-- order button -->
     <?php if (isset($_COOKIE['UserName'])) {?>
      <?php $userID = filter_input (INPUT_COOKIE, 'userName', FILTER_VALIDATE_INT); ?>
-        <form>                
+        <form action="../controller/index.php" method="post">
+        <input type="hidden" name="user_Action" value="add_orders">
         <a class="toCart" type="submit" >Order&nbsp;It</a>
         <input type="hidden" name="userID" value="<?php echo $userID;?>">
         <input type="hidden" name="bookID" value="<?php echo $select_book['bookID'];?>">
