@@ -46,17 +46,9 @@ CREATE TABLE users (
  userPassword          VARCHAR(60)    NOT NULL,
  userName         VARCHAR(60)    NOT NULL,
  shipAddressID     INT            DEFAULT NULL,
- billingAddressID  INT            DEFAULT NULL,
  PRIMARY KEY (userID),
  UNIQUE INDEX emailAddress (emailAddress),
- INDEX shipAddressID(shipAddressID),
- INDEX billingAddressID(billingAddressID)
-
- /* Reference to addresses table, I used a command below at line 159 & 160, foreign key in table do not work, errno: 150 "Foreign key constraint is incorrectly formed
- 
- FOREIGN KEY (shipAddressID) REFERENCES addresses(addressID),
- FOREIGN KEY (billingAddressID) REFERENCES addresses(addressID)
- */
+ INDEX shipAddressID(shipAddressID)
 );
 
 
@@ -79,14 +71,10 @@ CREATE TABLE orders (
  orderID           INT            NOT NULL   AUTO_INCREMENT,
  userID            INT            NOT NULL,
  orderDate         DATE       NOT NULL,
- shipAmount        DECIMAL(10,2)  NOT NULL,
+ totalAmount        DECIMAL(10,2)  NOT NULL,
  taxAmount         DECIMAL(10,2)  NOT NULL,
  shipDate          DATE           DEFAULT NULL,
  shipAddressID     INT            NOT NULL,
- cardType          CHAR(1)        NOT NULL,
- cardNumber        CHAR(16)       NOT NULL,
- cardExpires       CHAR(7)        NOT NULL,
- billingAddressID  INT            NOT NULL,
  PRIMARY KEY (orderID), 
  INDEX userID (userID),
  FOREIGN KEY (userID) REFERENCES users(userID)
@@ -174,4 +162,3 @@ INSERT INTO `users`(`privileges`, `emailAddress`, `userPassword`, `userName`) VA
 
 
 ALTER TABLE `users` ADD CONSTRAINT `users_shipAddressID_fk` FOREIGN KEY (`shipAddressID`) REFERENCES `addresses`(`addressID`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-ALTER TABLE `users` ADD CONSTRAINT `users_billingAddressID_fk` FOREIGN KEY (`billingAddressID`) REFERENCES `addresses`(`addressID`) ON DELETE RESTRICT ON UPDATE RESTRICT;
