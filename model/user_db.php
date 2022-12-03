@@ -44,6 +44,59 @@ function add_user($emailAddress, $userPassword, $userName) {
     
 }
 
+function add_Admin($emailAddress, $userPassword, $userName) {
+    global $db;
+	$userPassword = password_hash ($userPassword, PASSWORD_BCRYPT);
+    $priv='2';
+    $query = 'INSERT INTO users
+                 (privileges, emailAddress, userPassword, userName)
+              VALUES
+                 (:privileges, :emailAddress, :userPassword, :userName)';
+    
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':privileges', $priv);
+        $statement->bindValue(':emailAddress', $emailAddress);
+        $statement->bindValue(':userPassword', $userPassword);
+        $statement->bindValue(':userName', $userName);
+        $statement->execute();
+        $id = $db->lastInsertId();
+        $statement->closeCursor();
+        return $id;
+        //header('Location: index.php');
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        echo "<p>An error occurred while adding Admin user to the database: $error_message </p>";
+    }
+    
+}
+
+
+function get_userPriv($emailAddress) {
+    global $db;
+    $query = '  SELECT privileges 
+                FROM users
+                WHERE emailAddress = :emailAddress';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':emailAddress', $emailAddress);
+        $statement->execute();
+        $row = $statement->fetch();
+        $statement->closeCursor();
+        if ($row != null) {
+            $privileges = $row['privileges'];
+            return $privileges;
+        }
+        else {
+            return 0;
+        }
+
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        echo "<p>An error occurred while fetching user: $error_message </p>";
+    }
+    
+}
 
 
 function add_address($userID, $line1, $line2, $city, $state, $zipCode, $phone) {

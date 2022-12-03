@@ -480,13 +480,23 @@ if($user_Action == 'logged_in')
 
         $value=$id;
         $name='userName';
-        $userName = valid_userName($emailAddress);
-        
-    
+        $emailAddress = valid_userName($emailAddress);
         $expiration = time()+(60*60*24*7);
+
         setcookie($name, $value, $expiration);
+
+        echo "priv=", get_userPriv($emailAddress);
+        //echo "Priv=", $priv; 
         //echo $id, $userName;
-        header("Location: ../controller/index.php?user_Action=home");
+        // if($priv=="2"){
+        //     echo $priv; 
+        //     header("Location: ../controller/index.php?user_Action=admin_home_page");
+
+        // }
+        // else{
+
+        //     header("Location: ../controller/index.php?user_Action=home");
+        // }
 
         
     }
