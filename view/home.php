@@ -11,10 +11,15 @@ include('../view/header.php');
 
 
 <main>
-    <div class="welcome-wrapper" style="text-align:center">
-        <h1>E-commerce website coming soon </h1>
-    </div>
+    
 
+    <!-- display added a new employee message box  -->
+    <?php if(isset($error_msg)){?>
+        <div class="errorMsg">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <?php echo $error_msg ;?>
+        </div>
+    <?php } ?>
 
 
     <!-- Display books with $all_books array -->
@@ -51,7 +56,7 @@ include('../view/header.php');
     
     <!-- end book div -->
     </div><br><br><br>
-
+ 
 </main> 
 
 <?php include('../view/footer.php'); ?>

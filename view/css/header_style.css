@@ -12,7 +12,9 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 30px;
-    height: 70px;
+    height: 120px;
+    /*color*/
+    background:#e5f5fc;
 }
 
 .left-side {
@@ -308,4 +310,69 @@ a.toCart:hover {
     -webkit-transform: scale(1.02);
     -moz-transform: scale(1.02);
     transform: scale(1.02);
+<<<<<<< HEAD
 }
+=======
+
+}
+
+
+
+/* 11/30/2022 search box style*/
+.search_box {
+    overflow: hidden;
+    width:800px;
+    padding-left: 6em;
+
+    height: 50px;
+    
+  }
+
+ 
+.search_box input[type=text] {
+    float: none;
+    border: none;
+    font-size: 17px;
+    width: 580px;
+    height: 45px;
+}
+.search_box .search-container {
+    float: none;
+    
+  }
+
+  .topnav .search-container button {
+    float: right;
+    background: #ddd;
+    font-size: 25px;
+    border: none;
+    cursor: pointer;
+    padding-top: 1em;
+  }
+
+
+  /* Message box configuration */
+.errorMsg {
+    padding: 20px;
+    background-color: #df5313;
+    color: white;
+    margin-bottom: 15px;
+}
+  
+  /* The close button */
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  /* When moving the mouse over the close button */
+  .closebtn:hover {
+    color: black;
+  }
+>>>>>>> 06d427cdb017d797c0989895c0270a832cdf0013
