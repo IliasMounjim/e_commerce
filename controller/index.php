@@ -405,15 +405,18 @@ if($user_Action == 'addUser')
         $name='userName';
         $id= add_user($emailAddress, $userPassword, $userName);
         
-	    include('../view/registerAddress.php');
-
-        // header("Location: ../controller/index.php?user_Action=registerAddress");
+	    
+        //echo $id;
+        
+        $_SESSION['is_valid'] = true;
+        //echo "LOGGED IN\n";
+        $id = valid_userID($emailAddress);
         $value=$id;
+        $name='userName';
         $expiration = time()+(60*60*24*7);
         setcookie($name, $value, $expiration);
-
-        //echo $id;
-
+        //echo $id, $userName;
+        include('../view/registerAddress.php');
 
     }
     else
@@ -488,8 +491,8 @@ if($user_Action == 'logged_in')
         
     }
     else {
-        echo "NOT LOGGEDIN";
-        //header("Location: ../controller/index.php?user_Action=login");
+        //echo "NOT LOGGEDIN";
+        header("Location: ../controller/index.php?user_Action=login");
     }	
     
 }
