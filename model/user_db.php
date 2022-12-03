@@ -29,8 +29,6 @@ function add_user($emailAddress, $userPassword, $userName) {
         $statement->bindValue(':emailAddress', $emailAddress);
         $statement->bindValue(':userPassword', $userPassword);
         $statement->bindValue(':userName', $userName);
-        // $statement->bindValue(':shipAddressID', $shipAddressID);
-        // $statement->bindValue(':billingAddressID', $billingAddressID);
         $statement->execute();
         $id = $db->lastInsertId();
         $statement->closeCursor();
@@ -86,14 +84,13 @@ function add_address($userID, $line1, $line2, $city, $state, $zipCode, $phone) {
 function bind_address($userID,  $id){
     global $db;
     
-    $query = "UPDATE users SET shipAddressID=:shipAddressID,billingAddressID=:billingAddressID WHERE userID=:userID";
+    $query = "UPDATE users SET shipAddressID=:shipAddressID WHERE userID=:userID";
    
     try {
         $statement = $db->prepare($query);
 
         $statement->bindValue(':userID', $userID);
         $statement->bindValue(':shipAddressID', $id);
-        $statement->bindValue(':billingAddressID', $id);
         $statement->execute();
         $id = $db->lastInsertId();
         $statement->closeCursor();

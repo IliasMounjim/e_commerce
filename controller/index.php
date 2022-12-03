@@ -5,6 +5,7 @@ require("../model/database.php");
 require("../model/retrieve_books.php");
 require("../model/user_db.php");
 require("../model/add_delete_update_books.php");
+require("../model/order_functions.php");
 
 // Check user action to determine what they want to do
 $user_Action = filter_input (INPUT_POST, 'user_Action');
@@ -73,6 +74,28 @@ if($user_Action =='search')
         include('../view/error.php');
     }
 }
+
+
+if($user_Action == 'add_orders')
+{
+    if(isset($_POST['userID']))
+    {
+        $userID = filter_input(INPUT_POST, 'userID');
+        $bookID = filter_input(INPUT_POST, 'bookID');
+
+        add_orders($userID, $bookID);
+
+        $user_Action ='home';
+        
+    }
+    else
+    {
+        include('../view/error.php');
+    }
+}
+
+
+
 
 if($user_Action == 'home')
 {
@@ -145,7 +168,7 @@ if($user_Action =='book')
 
         $select_book = select_by_id($bookId);
 
-        $genre = select_by_genre($select_book[1]);
+        $genre = select_a_genre($select_book[1]);
 
 
         include('../view/book.php');
