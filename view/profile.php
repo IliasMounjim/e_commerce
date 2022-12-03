@@ -24,23 +24,25 @@ include('../view/header.php');
                 <form action="."method="post" id="logout">
                         <input type="hidden" name="user_Action" value="logout">
                         
-                        <div class="input-field button">
-                            <?php if (isset($_COOKIE['userName'])) {
-                                    $value = filter_input (INPUT_COOKIE, 'userName', FILTER_VALIDATE_INT);
-                                    //print_r($_COOKIE);
-                                    if ($value === false || $value == 0) {
-                                            //echo "No USER Found\nCookie is ", $value;
-                                    }
-                                    else {
-                                        $user = get_user($value);
-                                        $customer = $user['userName'];
-                                        echo "Hello, ", $customer, "\n";
-                                        $buttonName=$customer;
-                                        $href="../controller/index.php?user_Action=profile";
-                            
-                                    }
+                        <?php if (isset($_COOKIE['userName'])) {
+                                $value = filter_input (INPUT_COOKIE, 'userName', FILTER_VALIDATE_INT);
+                                //print_r($_COOKIE);
+                                if ($value === false || $value == 0) {
+                                        //echo "No USER Found\nCookie is ", $value;
                                 }
-                                ?>
+                                else {
+                                    $user = get_user($value);
+                                    $customer = $user['userName'];
+                                    echo "Hello, ", $customer, "\n";
+                                    $buttonName=$customer;
+                                    $href="../controller/index.php?user_Action=profile";
+                        
+                                }
+                            }
+                            ?>
+            
+                        <div class="input-field button">
+
                                 <input type="submit" value="Log Out" />
                                             
                         
@@ -48,8 +50,8 @@ include('../view/header.php');
                     </form>
 
                     <div class="login-signup">
-                        <span class="text">Not a member?
-                            <a href="../controller/index.php?user_Action=register"class="text signup-link"><strong>Signup Now</strong></a>
+                        <span class="text">Change Your info?
+                            <a href="../controller/index.php?user_Action=editProfile"class="text signup-link"><strong>Edit Profile</strong></a>
                         </span>
                     </div>
 
