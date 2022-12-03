@@ -354,9 +354,29 @@ a.toCart:hover {
 }
 
 
-/* The close button */
+.errorMsg {
+    padding: 20px;
+    background-color: #df5313;
+    color: white;
+    margin-bottom: 15px;
+}
 
-.closebtn {
+.added {
+    padding: 20px;
+    background-color: #217943;
+    color: white;
+    margin-bottom: 15px;
+  }
+
+.deleted {
+    padding: 20px;
+    background-color: #000000;
+    color: white;
+    margin-bottom: 15px;
+}
+  
+  /* The close button */
+  .closebtn {
     margin-left: 15px;
     color: white;
     font-weight: bold;
@@ -365,11 +385,74 @@ a.toCart:hover {
     line-height: 20px;
     cursor: pointer;
     transition: 0.3s;
+  }
+  
+  /* When moving the mouse over the close button */
+  .closebtn:hover {
+    color: black;
+  }
+
+/*Add books button*/
+.new_book{
+    background-color: #4070f4;
+    width: 175px;
+    height: 55px;
 }
 
+.add_book_form{
+    padding-left: 13em;
+    padding-top: 3em;
+}
 
-/* When moving the mouse over the close button */
+.big_text label{
+    margin-bottom: 3.5em;
+    float: left;
+}
 
-.closebtn:hover {
-    color: black;
+.big_text textarea{
+    display: inline;
+}
+
+.buttons .delete_a_book{
+    background-color: #000000;
+    color:rgb(255, 255, 255);
+    width: 189px;
+    height: 55px;
+    float: right;
+}
+
+.buttons .update_a_book{
+    background-color: #41bbc4;
+    color:rgb(12, 12, 12);
+    width: 189px;
+    height: 55px;
+    float: left;
+}
+
+.bigger_buttons .delete_a_book{
+    background-color: #000000;
+    color:rgb(255, 255, 255);
+    width: 473px;
+    height: 55px;
+    float: right;
+}
+
+.bigger_buttons .update_a_book{
+    background-color: #41bbc4;
+    color:rgb(12, 12, 12);
+    width: 473px;
+    height: 55px;
+    float: left;
+}
+
+.admin_book{
+    background:#4070f4;
+ 
+    color:rgb(255, 255, 255);
+    width: 378px;
+    height: 55px;
+}
+
+.middle{
+    margin-left: 50em;
 }
