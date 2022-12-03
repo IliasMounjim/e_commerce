@@ -32,8 +32,8 @@ if ($user_Action == null)
 {
     // Always displays the home page
     // 12/2/2022 goes to admin version of the website
-    $user_Action = 'admin_home_page';
-    // $user_Action = 'home';
+    //$user_Action = 'admin_home_page';
+     $user_Action = 'home';
 }
 
 // 11/30/2022 search box
@@ -536,6 +536,9 @@ if($user_Action == 'logout')
         }
     }
 }
+
+
+
 
 
 
