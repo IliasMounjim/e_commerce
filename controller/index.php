@@ -168,7 +168,7 @@ if($user_Action =='book')
 
         $select_book = select_by_id($bookId);
 
-        $genre = select_by_genre($select_book[1]);
+        $genre = select_a_genre($select_book[1]);
 
 
         include('../view/book.php');
