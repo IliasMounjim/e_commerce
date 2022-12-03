@@ -93,17 +93,24 @@ error_reporting (E_ALL);
             }
 
         }
+
+        if (isset($_COOKIE['UserName'])) {
+            $value = filter_input (INPUT_COOKIE, 'UserName', FILTER_VALIDATE_INT);
+            if ($value === false || $value == 0) {
+                echo "No USER Found";
+            }
+            else {
+                $user = get_user($value);
+                $customer = $user['userName'];
+                echo "USER: ", $customer;
+            }
+        }
         
 
     ?>
     <div class="nav-link-wrapper <?php if (isset($current_page)&&$current_page[1] == 'login') echo 'active-nav-link'; else if (isset($current_page)&& ($current_page[1] == 'register' || $current_page[1] == 'registerAddress' )) echo 'active-nav-link';?>">
         <a href=<?= $href?>><?= $buttonName?></a>
     </div>
-
-
-
-
-                
 
     
     <div class="brand">

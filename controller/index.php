@@ -270,6 +270,12 @@ if($user_Action == 'logged_in')
         if ($pass) {
             $_SESSION['is_valid'] = true;
             echo "LOGGED IN";
+            $id = valid_userID($emailAddress);
+            $value=$id;
+            $userName = valid_userName($emailAddress);
+
+            $expiration = time()+(60*60*24*7);
+            setcookie($userName, $value, $expiration);
             header("Location: ../controller/index.php?user_Action=home");
         }
         else {
@@ -279,4 +285,7 @@ if($user_Action == 'logged_in')
         
     }
 	
+
+
+
 ?>

@@ -11,7 +11,17 @@ function get_user($userID) {
     $statement->closeCursor();    
     return $user;
 }
-
+function get_userID($user) {
+    global $db;
+    $query = 'SELECT * FROM users
+              WHERE id = :userID';    
+    $statement = $db->prepare($query);
+    $statement->bindValue(':userID', $userID);
+    $statement->execute();    
+    $user = $statement->fetch();
+    $statement->closeCursor();    
+    return $user;
+}
 
 //function add_user($emailAddress, $userPassword, $userName, $shipAddressID, $billingAddressID)
 function add_user($emailAddress, $userPassword, $userName) {
@@ -136,5 +146,63 @@ function is_valid_user($emailAddress, $userPassword) {
     }
     
 }
+
+
+function valid_userID($emailAddress) {
+    global $db;
+    $query = '  SELECT userID 
+                FROM users
+                WHERE emailAddress = :emailAddress';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':emailAddress', $emailAddress);
+        $statement->execute();
+        $row = $statement->fetch();
+        $statement->closeCursor();
+        if ($row != null) {
+            $id = $row['userID'];
+            return $id;
+        }
+        else {
+            return 0;
+        }
+
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        echo "<p>An error occurred while fetching user: $error_message </p>";
+    }
+    
+}
+
+
+function valid_userName($emailAddress) {
+    global $db;
+    $query = '  SELECT userName 
+                FROM users
+                WHERE emailAddress = :emailAddress';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':emailAddress', $emailAddress);
+        $statement->execute();
+        $row = $statement->fetch();
+        $statement->closeCursor();
+        if ($row != null) {
+            $userName = $row['userName'];
+            return $userName;
+        }
+        else {
+            return 0;
+        }
+
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        echo "<p>An error occurred while fetching user: $error_message </p>";
+    }
+    
+}
+
+
+
+
 	
 ?>
