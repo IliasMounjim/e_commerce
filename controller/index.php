@@ -11,8 +11,8 @@ require("../model/order_functions.php");
 $user_Action = filter_input (INPUT_POST, 'user_Action');
 
 
-if (isset($_COOKIE['UserName'])) {
-	$value = filter_input (INPUT_COOKIE, 'UserName', FILTER_VALIDATE_INT);
+if (isset($_COOKIE['userName'])) {
+	$value = filter_input (INPUT_COOKIE, 'userName', FILTER_VALIDATE_INT);
 	if ($value === false || $value == 0) {
 		$customer = "";
 	}
