@@ -75,6 +75,28 @@ if($user_Action =='search')
     }
 }
 
+
+if($user_Action == 'add_orders')
+{
+    if(isset($_POST['userID']))
+    {
+        $userID = filter_input(INPUT_POST, 'userID');
+        $bookID = filter_input(INPUT_POST, 'bookID');
+
+        add_orders($userID, $bookID);
+
+        $user_Action ='home';
+        
+    }
+    else
+    {
+        include('../view/error.php');
+    }
+}
+
+
+
+
 if($user_Action == 'home')
 {
     // To hold all books' data
