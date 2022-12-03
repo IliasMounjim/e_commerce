@@ -1,12 +1,25 @@
 <?php  
 
+session_start();
 require("../model/database.php");
 require("../model/retrieve_books.php");
-
 require("../model/user_db.php");
 
 // Check user action to determine what they want to do
 $user_Action = filter_input (INPUT_POST, 'user_Action');
+
+
+if (isset($_COOKIE['UserName'])) {
+	$value = filter_input (INPUT_COOKIE, 'UserName', FILTER_VALIDATE_INT);
+	if ($value === false || $value == 0) {
+		$customer = "";
+	}
+	else {
+		$user = get_user($value);
+		$customer = $user['userName'];
+	}
+}
+
 
 if(isset($_GET['user_Action']))
 	$user_Action = $_GET['user_Action'];
@@ -192,11 +205,6 @@ if($user_Action == 'addUser')
 	    include('../view/registerAddress.php');
 
         // header("Location: ../controller/index.php?user_Action=registerAddress");
-        //header("Location: ../index.php");
-        
-        
-        // $id = add_user($emailAddress, $userPassword, $userName);
-        
         $value=$id;
         $expiration = time()+(60*60*24*7);
         setcookie($userName, $value, $expiration);
@@ -207,7 +215,7 @@ if($user_Action == 'addUser')
     }
     else
     {
-        echo "Add_user not successful";
+        echo "Add user not successful";
         include('../view/error.php');
     }
     
@@ -237,30 +245,16 @@ if($user_Action == 'addAddress')
         echo gettype($userId),gettype($line1), gettype($city),gettype($state),gettype($zipCode),gettype($phone);
         
         $id= add_address($userId, $line1, $line2, $city, $state, $zipCode, $phone);
-        echo $id;
-
+        //echo $id;
+        //add address to user
         bind_address($userId,  $id);
 
         header("Location: ../controller/index.php?user_Action=home");
 
-
-
-        // header("Location: ../controller/index.php?user_Action=registerAddress");
-        //header("Location: ../index.php");
-        //add_user($emailAddress, $userPassword, $userName);
-        
-        
-        // $id = add_user($emailAddress, $userPassword, $userName);
-        // $name='userName';
-        // $value=$id;
-        // $expiration = time()+(60*60*24*7);
-        // setcookie($name, $value, $expiration);
-
-
     }
     else
     {
-        echo "Add_user not successful";
+        echo "Add addresss not successful";
         include('../view/error.php');
     }
 }
@@ -275,7 +269,7 @@ if($user_Action == 'logged_in')
         $pass = is_valid_user($emailAddress, $userPassword);
         if ($pass) {
             $_SESSION['is_valid'] = true;
-            echo "LOGGEDIN";
+            echo "LOGGED IN";
             header("Location: ../controller/index.php?user_Action=home");
         }
         else {

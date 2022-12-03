@@ -167,10 +167,10 @@ INSERT INTO `books`(`genreID`, `bookName`, `bookDescription`, `listPrice`, `disc
 
 
 
-INSERT INTO `users`(`privileges`, `emailAddress`, `userPassword`, `firstName`, `lastName`) VALUES 
-('3','Eli','123','admin','Eli'),
-('3','Lin','123','admin','Lin'),
-('1','','','Dear','Visitor');
+INSERT INTO `users`(`privileges`, `emailAddress`, `userPassword`, `userName`) VALUES 
+('3','Eli','123','admin Eli'),
+('3','Lin','123','admin Lin'),
+('1','','','Dear Visitor');
 
 
 ALTER TABLE `users` ADD CONSTRAINT `users_shipAddressID_fk` FOREIGN KEY (`shipAddressID`) REFERENCES `addresses`(`addressID`) ON DELETE RESTRICT ON UPDATE RESTRICT;

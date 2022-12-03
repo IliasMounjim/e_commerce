@@ -82,12 +82,27 @@ error_reporting (E_ALL);
 
 
     <div class="right-side">
-    <div class="nav-link-wrapper <?php if (isset($current_page)&&$current_page[1] == 'login') echo 'active-nav-link';?>">
-        <a href="../controller/index.php?user_Action=login">Login</a>
+    <?php 
+        $href="../controller/index.php?user_Action=login";
+        $buttonName="Login";
+    
+        if(!empty($_GET)) {
+            if (isset($current_page)&& ($current_page[1] == 'register' || $current_page[1] == 'registerAddress' )){
+                $href="../controller/index.php?user_Action=register";
+                $buttonName="Signup";
+            }
+
+        }
+        
+
+    ?>
+    <div class="nav-link-wrapper <?php if (isset($current_page)&&$current_page[1] == 'login') echo 'active-nav-link'; else if (isset($current_page)&& ($current_page[1] == 'register' || $current_page[1] == 'registerAddress' )) echo 'active-nav-link';?>">
+        <a href=<?= $href?>><?= $buttonName?></a>
     </div>
-    <div class="nav-link-wrapper <?php if (isset($current_page)&&$current_page[1] == 'register') echo 'active-nav-link';?>">
-        <a href="../controller/index.php?user_Action=register">Sign Up</a>
-    </div>
+
+
+
+
                 
 
     

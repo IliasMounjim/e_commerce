@@ -1,11 +1,11 @@
 <?php
 
-function get_user($user_id) {
+function get_user($userID) {
     global $db;
     $query = 'SELECT * FROM users
-              WHERE id = :user_id';    
+              WHERE id = :userID';    
     $statement = $db->prepare($query);
-    $statement->bindValue(':user_id', $user_id);
+    $statement->bindValue(':userID', $userID);
     $statement->execute();    
     $user = $statement->fetch();
     $statement->closeCursor();    
@@ -19,17 +19,16 @@ function add_user($emailAddress, $userPassword, $userName) {
 	$userPassword = password_hash ($userPassword, PASSWORD_BCRYPT);
     $priv='1';
     $query = 'INSERT INTO users
-                 (privileges, emailAddress, userPassword, firstName, lastName)
+                 (privileges, emailAddress, userPassword, userName)
               VALUES
-                 (:privileges, :emailAddress, :userPassword, :firstName, :lastName)';
+                 (:privileges, :emailAddress, :userPassword, :userName)';
     
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':privileges', $priv);
         $statement->bindValue(':emailAddress', $emailAddress);
         $statement->bindValue(':userPassword', $userPassword);
-        $statement->bindValue(':firstName', $userName);
-        $statement->bindValue(':lastName', $userName);
+        $statement->bindValue(':userName', $userName);
         // $statement->bindValue(':shipAddressID', $shipAddressID);
         // $statement->bindValue(':billingAddressID', $billingAddressID);
         $statement->execute();
