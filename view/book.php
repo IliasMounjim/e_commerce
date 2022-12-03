@@ -43,8 +43,15 @@ include('../view/header.php');
         </figure>
     </div>
 
-    <!-- add to cart button -->
-    <a class="toCart" href="#">Add&nbsp;To&nbsp;Cart</a>
+    <!-- order button -->
+    <?php if (isset($_COOKIE['UserName'])) {?>
+     <?php $userID = filter_input (INPUT_COOKIE, 'userName', FILTER_VALIDATE_INT); ?>
+        <form>                
+        <a class="toCart" type="submit" >Order&nbsp;It</a>
+        <input type="hidden" name="userID" value="<?php echo $userID;?>">
+        <input type="hidden" name="bookID" value="<?php echo $select_book['bookID'];?>">
+        </form>
+    <?php }?>
 </main> 
 
 <?php include('../view/footer.php'); ?>
