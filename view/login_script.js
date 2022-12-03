@@ -25,6 +25,15 @@ pwShowHide.forEach(eyeIcon => {
     })
 })
 
+function checkPassword(theForm) {
+    if (theForm.password.value != theForm.password1.value) {
+        alert('Password doesn\'t match!');
+        return false;
+    } else {
+        return true;
+    }
+}
+
 // // js code to appear signup and login form
 // signUp.addEventListener("click", () => {
 //     container.classList.add("active");

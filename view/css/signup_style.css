@@ -14,7 +14,7 @@
 
 .container {
     position: relative;
-    max-width: 430px;
+    max-width: 600px;
     width: 100%;
     background: #4070f4;
     border-radius: 10px;
@@ -26,8 +26,8 @@
 .container .forms {
     display: flex;
     align-items: center;
-    height: 600px;
-    width: 200%;
+    height: 800px;
+    width: 300%;
     transition: height 0.2s ease;
 }
 
@@ -64,9 +64,9 @@
 
 .input-field input {
     position: absolute;
-    height: 100%;
+    height: 80%;
     width: 100%;
-    padding: 0 35px;
+    padding: 0 25px;
     border: none;
     outline: none;
     font-size: 16px;
@@ -154,6 +154,6 @@
 }
 
 .form .login-signup {
-    margin-top: 30px;
+    margin-top: 20px;
     text-align: center;
 }

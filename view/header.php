@@ -28,12 +28,23 @@ error_reporting (E_ALL);
 </head>
 </header>
 <?php
+    
     if(isset($_SERVER['QUERY_STRING']))
     {
         $current_query = $_SERVER['QUERY_STRING'];
         $current_page = explode("=", $current_query);
         //echo $current_page[1];
+
     }
+    // if(empty($_GET)) {
+    //     //No variables are specified in the URL.
+    //     //Do stuff accordingly
+    //     echo "No variables specified in URL...";
+    // } else {
+    //     //Variables are present. Do stuff:
+    //     echo "Here are all the variables in the URL!\n";
+    //     print_r($_GET);
+    // }
 ?>
 </div>
 
@@ -56,16 +67,31 @@ error_reporting (E_ALL);
         <a href="../controller/index.php?user_Action=orders">Orders</a>
     </div>
 
+    <div class="nav-link-wrapper">
+        <a href="../controller/index.php?user_Action=Cart" class= "uil uil-shopping-cart"></a>
+    </div>
+
 
     </div>
 
     <div class="right-side">
-    <div class="nav-link-wrapper <?php if (isset($current_page) && $current_page[1] == 'login') echo 'active-nav-link';?>">
-        <a href="../controller/index.php?user_Action=login">Login</a>
+    <?php 
+    $buttonName = "Login";
+    $href ="../controller/index.php?user_Action=login"; 
+    
+
+    if(!empty($_GET)) {
+        if(isset($current_page) && ($current_page[1] == 'register' || $current_page[1] == 'registerAddress')) {
+            $buttonName = "Signup";
+            $href ="../controller/index.php?user_Action=register";
+        }
+    }
+    ?>
+
+    <div class="nav-link-wrapper <?php if (isset($current_page) && ($current_page[1] == 'login' || $current_page[1] == 'register' || $current_page[1] == 'registerAddress')) echo 'active-nav-link';?>">
+        <a href=<?=$href?>><?=$buttonName?></a>
     </div>
-    <div class="nav-link-wrapper <?php if (isset($current_page) && $current_page[1] == 'register') echo 'active-nav-link';?>">
-        <a href="../controller/index.php?user_Action=register">Sign Up</a>
-    </div>
+                
 
     
     <div class="brand">
@@ -74,9 +100,6 @@ error_reporting (E_ALL);
 
     </div>
     </div>
-
-    <script src="header_script.js"></script>
-
 
 
 <body>

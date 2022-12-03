@@ -3,6 +3,8 @@
 require("../model/database.php");
 require("../model/retrieve_books.php");
 
+require("../model/user_db.php");
+
 // Check user action to determine what they want to do
 $user_Action = filter_input (INPUT_POST, 'user_Action');
 
@@ -76,14 +78,8 @@ if($user_Action =='book')
 
 if($user_Action == 'authors')
 {
-
-
-
-
     include('../view/authors.php');
 }
-
-
 
 
 
@@ -110,14 +106,109 @@ if($user_Action == 'orders')
 
 if($user_Action == 'login')
 {
-
 	include('../view/login.php');
+   
+
 }
 
 if($user_Action == 'register')
 {
-
 	include('../view/register.php');
+}
+
+if($user_Action == 'registerAddress')
+{
+
+	include('../view/registerAddress.php');
+}
+
+if($user_Action == 'addUser')
+{
+    if(isset($_POST['addUser']))
+    {
+        $emailAddress=filter_input(INPUT_POST, 'email');
+        $userPassword=filter_input(INPUT_POST, 'password');
+        $userName= filter_input(INPUT_POST, 'userName');
+
+        //echo $emailAddress, $userPassword, $userName;
+        //echo gettype($emailAddress), gettype($userPassword), gettype($userName);
+
+        $id= add_user($emailAddress, $userPassword, $userName);
+        
+	    include('../view/registerAddress.php');
+
+        // header("Location: ../controller/index.php?user_Action=registerAddress");
+        //header("Location: ../index.php");
+        
+        
+        // $id = add_user($emailAddress, $userPassword, $userName);
+        
+        $value=$id;
+        $expiration = time()+(60*60*24*7);
+        setcookie($userName, $value, $expiration);
+
+        //echo $id;
+
+
+    }
+    else
+    {
+        echo "Add_user not successful";
+        include('../view/error.php');
+    }
+    
+}
+
+if($user_Action == 'addAddress')
+{
+
+    if(isset($_POST['addAddress']))
+    {
+        $userId= filter_input(INPUT_POST, 'id');
+
+        $line1=filter_input(INPUT_POST, 'line1');
+        $line2=filter_input(INPUT_POST, 'line2');
+        if($line2==NULL)
+            $line2=" ";
+        $city= filter_input(INPUT_POST, 'city');
+        $state= filter_input(INPUT_POST, 'state');
+        $zipCode=filter_input(INPUT_POST, 'zipCode');
+        $phone=filter_input(INPUT_POST, 'phone');
+
+        
+        //echo $emailAddress, $userPassword, $userName;
+        //echo gettype($emailAddress), gettype($userPassword), gettype($userName);
+
+        echo $userId,$line1, $line2, $city,$state, $zipCode, $phone;
+        echo gettype($userId),gettype($line1), gettype($city),gettype($state),gettype($zipCode),gettype($phone);
+        
+        $id= add_address($userId, $line1, $line2, $city, $state, $zipCode, $phone);
+        echo $id;
+
+        bind_address($userId,  $id);
+
+        header("Location: ../controller/index.php?user_Action=home");
+
+
+
+        // header("Location: ../controller/index.php?user_Action=registerAddress");
+        //header("Location: ../index.php");
+        //add_user($emailAddress, $userPassword, $userName);
+        
+        
+        // $id = add_user($emailAddress, $userPassword, $userName);
+        // $name='userName';
+        // $value=$id;
+        // $expiration = time()+(60*60*24*7);
+        // setcookie($name, $value, $expiration);
+
+
+    }
+    else
+    {
+        echo "Add_user not successful";
+        include('../view/error.php');
+    }
 }
 
 
@@ -125,6 +216,19 @@ if($user_Action == 'register')
 if($user_Action == 'logged_in')
 {
 
-	include('../view/home.php');
-}
+        $emailAddress = filter_input(INPUT_POST, 'emailAddress');
+        $userPassword = filter_input(INPUT_POST, 'userPassword');
+        $pass = is_valid_user($emailAddress, $userPassword);
+        if ($pass) {
+            $_SESSION['is_valid'] = true;
+            echo "LOGGEDIN";
+            header("Location: ../controller/index.php?user_Action=home");
+        }
+        else {
+            echo "NOT LOGGEDIN";
+            //header("Location: ../controller/index.php?user_Action=login");
+        }	
+        
+    }
+	
 ?>

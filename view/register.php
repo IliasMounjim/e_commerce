@@ -13,7 +13,7 @@ include('../view/header.php');
 
  
 <main>
-    <!--<title>Login & Registration Form</title>-->
+
     <div class="body">
             
         <div class="container">
@@ -21,48 +21,49 @@ include('../view/header.php');
             <div class="form login">
                 <span class="title">Sign up</span>
 
-                <form action="#">
+                <form action="."method="post" id="addUser" onsubmit="return checkPassword(this);">
+                    <input type="hidden" name="user_Action" value="addUser">
                     <div class="input-field">
-                        <input type="text" placeholder="Enter your name" required>
+                        <input type="text" name="userName" placeholder="Enter your name" required>
                         <i class="uil uil-user"></i>
                     </div>
                     <div class="input-field">
-                        <input type="text" placeholder="Enter your email" required>
+                        <input type="text" name="email" placeholder="Enter your email" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="Create a password" required>
+                        <input type="password" id="password"name="password" placeholder="Create a password" required>
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="Confirm a password" required>
+                        <input type="password" id="password1" name="password1" placeholder="Confirm a password" required>
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
 
                     <div class="checkbox-text">
                         <div class="checkbox-content">
-                            <input type="checkbox" id="termCon">
+                            <input type="checkbox" id="termCon" required>
                             <label for="termCon" class="text">I accepted all terms and conditions</label>
                         </div>
                     </div>
 
                     <div class="input-field button">
-                        <input type="submit" value="Signup">
+                        <input name="addUser" type="submit" value="Signup">
                     </div>
                 </form>
 
                 <div class="login-signup">
                     <span class="text">Already a member?
-                        <a href="../controller/index.php?user_Action=login" class="text login-link">Login Now</a>
+                        <a href="../controller/index.php?user_Action=login" class="text login-link"><strong>Login Now</strong></a>
                     </span>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="login_script.js"></script>
+    <script src="login_script.js"> </script>
        
 </main> 
 

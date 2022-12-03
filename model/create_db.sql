@@ -32,20 +32,19 @@ CREATE TABLE books (
  FOREIGN KEY (genreID) REFERENCES genres(genreID)
 );
 
-CREATE TABLE users (
- userID        INT            NOT NULL   AUTO_INCREMENT,
- 
  /*
  1 is visitor, they can view and search books, everyone that enters the site without cookies stored, they will be viewed as visitors
  2 is normal user, they can use shopping cart, view/search books, and checks out. When a new user try to register, they will be assigned as a normal user
  3 is administrator, we will have a few pre-define admin accounts, they can add/delete/update/select books
  */
+CREATE TABLE users (
+ userID        INT            NOT NULL   AUTO_INCREMENT,
+ 
  privileges        INT            NOT NULL,
  
  emailAddress      VARCHAR(255)   NOT NULL,
  userPassword          VARCHAR(60)    NOT NULL,
- firstName         VARCHAR(60)    NOT NULL,
- lastName          VARCHAR(60)    NOT NULL,
+ userName         VARCHAR(60)    NOT NULL,
  shipAddressID     INT            DEFAULT NULL,
  billingAddressID  INT            DEFAULT NULL,
  PRIMARY KEY (userID),

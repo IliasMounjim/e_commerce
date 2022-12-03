@@ -23,14 +23,14 @@ include('../view/header.php');
                 <div class="form login">
                     <span class="title">Login</span>
 
-                    <form action="."method="post" id="add_emp_form">
+                    <form action="."method="post" id="logged_in">
                         <input type="hidden" name="user_Action" value="logged_in">
                         <div class="input-field">
-                            <input type="text" placeholder="Enter your email" required>
+                            <input name="emailAddress" type="text" placeholder="Enter your email" required>
                             <i class="uil uil-envelope icon"></i>
                         </div>
                         <div class="input-field">
-                            <input type="password" class="password" placeholder="Enter your password" required>
+                            <input name="userPassword"type="password" class="password" placeholder="Enter your password" required>
                             <i class="uil uil-lock icon"></i>
                             <i class="uil uil-eye-slash showHidePw"></i>
                         </div>
@@ -46,14 +46,14 @@ include('../view/header.php');
 
                         <div class="input-field button">
                             
-                            <input type="submit" value="Login">
+                            <input type="submit" value="Login" name="logged_in">
                             
                         </div>
                     </form>
 
                     <div class="login-signup">
                         <span class="text">Not a member?
-                            <a href="../controller/index.php?user_Action=register"class="text signup-link">Signup Now</a>
+                            <a href="../controller/index.php?user_Action=register"class="text signup-link"><strong>Signup Now</strong></a>
                         </span>
                     </div>
 
