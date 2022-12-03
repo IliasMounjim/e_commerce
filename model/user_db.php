@@ -11,7 +11,7 @@ function get_user($userID) {
     $statement->closeCursor();    
     return $user;
 }
-function get_userID($user) {
+function get_userID($userID) {
     global $db;
     $query = 'SELECT * FROM users
               WHERE id = :userID';    
