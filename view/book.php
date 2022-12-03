@@ -44,7 +44,7 @@ include('../view/header.php');
     </div>
 
    <!-- order button -->
-    <?php if (isset($_COOKIE['UserName'])) {?>
+    <?php if (isset($_COOKIE['userName'])) {?>
      <?php $userID = filter_input (INPUT_COOKIE, 'userName', FILTER_VALIDATE_INT); ?>
         <form action="../controller/index.php" method="post">
         <input type="hidden" name="user_Action" value="add_orders">
