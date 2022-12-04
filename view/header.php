@@ -97,25 +97,52 @@ error_reporting (E_ALL);
         if (isset($_COOKIE['userName'])) {
             $value = filter_input (INPUT_COOKIE, 'userName', FILTER_VALIDATE_INT);
             //print_r($_COOKIE);
-            if ($value === false || $value == 0) {
-                 //echo "No USER Found\nCookie is ", $value;
-            }
-            else {
+            if (!($value === false || $value == 0)) {
                 $user = get_user($value);
                 $customer = $user['userName'];
                 //echo "USER: ", $customer;
                 $buttonName=$customer;
                 $href="../controller/index.php?user_Action=profile";
 
+                echo '<div class="nav-link-wrapper">
+        
+                <div class="dropdown">
+                    
+                    <button class="dropbtn">',$buttonName,'</button>
+                    <div class="dropdown-content">
+                        <a href=',$href,'>Edit Profile</a>
+                        <a href="#">Setting</a>
+                        <a href="../controller/index.php?user_Action=logout">Logout</a>
+                    </div>
+                </div>
+        
+            </div>';
+            
+
+                
             }
         }
+        else{
+            $linkClass="nav-link-wrapper";
+            if(!empty($_GET)) {
+                if (isset($current_page)&&$current_page[1] == 'login'){
+                    $linkClass.= ' active-nav-link';
+                } else if (isset($current_page)&& ($current_page[1] == 'register' || $current_page[1] == 'registerAddress' )){ 
+                    $linkClass.= ' active-nav-link';
+                }
+            }
+            echo '<div class="',$linkClass,'">
+            <a href=',$href,'>',$buttonName,'</a>
+        </div>';
+
+            
+
+        }
+
     ?>
 
 
-    <div class="nav-link-wrapper <?php if (isset($current_page)&&$current_page[1] == 'login') echo 'active-nav-link'; else if (isset($current_page)&& ($current_page[1] == 'register' || $current_page[1] == 'registerAddress' )) echo 'active-nav-link';?>">
-        <a href=<?= $href?>><?= $buttonName?></a>
-    </div>
-
+    
     
     <div class="brand">
         PHP Assassin Shop

@@ -96,6 +96,9 @@ ON books
 TO mgs_tester@localhost;
 
 
+--create admin user
+INSERT INTO `users` (`privileges`, `emailAddress`, `userPassword`, `userName`) 
+VALUES ('2', 'Admin@example.com', '$2y$10$tIwL1KXtE/fcXOi0sLDhuO0MWPd7WdhjNALYwMnfkE0BPhKHyYWXS', 'Admin')
 INSERT INTO `genres`(`genreName`) VALUES
 ('Arts'),
 ('Sci-Fi'),

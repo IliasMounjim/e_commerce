@@ -13,12 +13,10 @@ $user_Action = filter_input (INPUT_POST, 'user_Action');
 
 if (isset($_COOKIE['userName'])) {
 	$value = filter_input (INPUT_COOKIE, 'userName', FILTER_VALIDATE_INT);
-	if ($value === false || $value == 0) {
-		$customer = "";
-	}
-	else {
-		$user = get_user($value);
-		$customer = $user['userName'];
+	if (!($value === false || $value == 0)) {
+        $user = get_user($value);
+        $customer = $user['userName'];
+        $priv = $user['privileges'];
 	}
 }
 
@@ -32,8 +30,22 @@ if ($user_Action == null)
 {
     // Always displays the home page
     // 12/2/2022 goes to admin version of the website
-    //$user_Action = 'admin_home_page';
-     $user_Action = 'home';
+    
+    if (isset($_COOKIE['userName'])) {
+        $value = filter_input (INPUT_COOKIE, 'userName', FILTER_VALIDATE_INT);
+        if (!($value === false || $value == 0)) {
+            $user = get_user($value);
+            $customer = $user['userName'];
+            $priv = $user['privileges'];
+            if($priv==2) {
+                $user_Action = 'admin_home_page';
+            }
+        }
+    }
+    else{
+        $user_Action = 'home';
+    }
+    
 }
 
 // 11/30/2022 search box
@@ -305,11 +317,8 @@ if($user_Action =='admin_result_display')
 
 if($user_Action == 'admin_home_page')
 {
-
-
     // To hold all books' data
     $all_books = select_all_books();
-
     include('../view/admin_home_page.php');
 }
 
@@ -511,32 +520,38 @@ if($user_Action == 'logged_in')
 
         setcookie($name, $value, $expiration);
 
-        echo "priv=", get_userPriv($emailAddress);
-        //echo "Priv=", $priv; 
-        //echo $id, $userName;
-        // if($priv=="2"){
-        //     echo $priv; 
-        //     header("Location: ../controller/index.php?user_Action=admin_home_page");
-
-        // }
-        // else{
-
-        //     header("Location: ../controller/index.php?user_Action=home");
-        // }
-
-        
+        $priv= get_userPriv($emailAddress);
+        // echo "Priv=", $priv; 
+        // echo $id, $userName;
+        if($priv=="2"){
+            header("Location: ../controller/index.php?user_Action=admin_home_page");
+        }
+        else{
+            header("Location: ../controller/index.php?user_Action=home");
+        }
     }
     else {
         //echo "NOT LOGGEDIN";
-        header("Location: ../controller/index.php?user_Action=login");
+        ?>
+        <script> 
+            alert('You entered an incorrect user name or password.\nPlease Try Again');
+            window.location = "../controller/index.php?user_Action=login";
+        </script>
+
+        <?php
+        //header("Location: ../controller/index.php?user_Action=login");
     }	
-    
 }
 
 if($user_Action == 'profile')
 {
-    
     include('../view/profile.php');
+}
+
+if($user_Action == 'admin_profile')
+{
+    
+    include('../view/admin_profile.php');
 }
 
 
