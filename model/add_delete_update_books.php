@@ -108,4 +108,23 @@ function delete_book($bookID)
     $delete = "Successfully deleted&emsp;".$book_Name[0]."&emsp;from database";
     return $delete;
 }
+
+function add_genre($genreName)
+{
+    global $db;
+
+    $add_query = 'INSERT INTO genres (genreName) VALUES (:genreName)';
+    $add_statement = $db->prepare($add_query);
+
+    //bind value
+    $add_statement->bindValue(':genreName', $genreName);
+
+
+    // Executes, frees up connection
+    $add_statement->execute();
+    $add_statement->closeCursor();
+
+    $success = "Successfully added new category&emsp;".$genreName."&emsp;into database";
+    return $success;
+}
 ?>
