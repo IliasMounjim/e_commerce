@@ -33,9 +33,8 @@ CREATE TABLE books (
 );
 
  /*
- 1 is visitor, they can view and search books, everyone that enters the site without cookies stored, they will be viewed as visitors
- 2 is normal user, they can use shopping cart, view/search books, and checks out. When a new user try to register, they will be assigned as a normal user
- 3 is administrator, we will have a few pre-define admin accounts, they can add/delete/update/select books
+ 1 is normal user, they can use shopping cart, view/search books, and checks out. When a new user try to register, they will be assigned as a normal user
+ 2 is administrator, we will have a few pre-define admin accounts, they can add/delete/update/select books
  */
 CREATE TABLE users (
  userID        INT            NOT NULL   AUTO_INCREMENT,
@@ -69,6 +68,7 @@ CREATE TABLE addresses (
 
 CREATE TABLE orders (
  orderID           INT            NOT NULL   AUTO_INCREMENT,
+ bookID         INT            NOT NULL,
  userID            INT            NOT NULL,
  orderDate         DATE       NOT NULL,
  totalAmount        DECIMAL(10,2)  NOT NULL,
@@ -77,27 +77,8 @@ CREATE TABLE orders (
  shipAddressID     INT            NOT NULL,
  PRIMARY KEY (orderID), 
  INDEX userID (userID),
- FOREIGN KEY (userID) REFERENCES users(userID)
-);
-
-CREATE TABLE orderItems (
- itemID            INT            NOT NULL   AUTO_INCREMENT,
- orderID           INT            NOT NULL,
-
- 
- bookID         INT            NOT NULL,
-
- /* Do we need these two in here tho? Cuz it can reference books.bookID*/
- itemPrice         DECIMAL(10,2)  NOT NULL,
- discountAmount    DECIMAL(10,2)  NOT NULL,
- 
-
- quantity          INT            NOT NULL,
- PRIMARY KEY (itemID), 
- INDEX orderID (orderID), 
- INDEX bookID (bookID),
- FOREIGN KEY (bookID) REFERENCES books(bookID),
- FOREIGN KEY (orderID) REFERENCES orders(orderID)
+ FOREIGN KEY (userID) REFERENCES users(userID),
+ FOREIGN KEY (bookID) REFERENCES books(bookID)
 );
 
 
@@ -154,11 +135,6 @@ INSERT INTO `books`(`genreID`, `bookName`, `bookDescription`, `listPrice`, `disc
 ('3', 'Absolute C++', "A comprehensive introduction to the C++ programming language. The text is organized around the specific use of C++, providing programmers with an opportunity to master the language completely. Adaptable to a wide range of users, the text is appropriate for beginner to advanced programmers familiar with the C++ language.", '179.99', '0.05', '0133970787', 'Walter Savitch', 'Pearson', '../view/pic/C++.jpg');
 
 
-
-INSERT INTO `users`(`privileges`, `emailAddress`, `userPassword`, `userName`) VALUES 
-('3','Eli','123','admin Eli'),
-('3','Lin','123','admin Lin'),
-('1','','','Dear Visitor');
 
 
 ALTER TABLE `users` ADD CONSTRAINT `users_shipAddressID_fk` FOREIGN KEY (`shipAddressID`) REFERENCES `addresses`(`addressID`) ON DELETE RESTRICT ON UPDATE RESTRICT;
