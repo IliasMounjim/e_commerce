@@ -54,7 +54,7 @@ include('../view/admin_header.php');
 
         <!-- Let admin choose new employee's job title  -->
    
-        <label>Book&nbsp;Genre(Please select from box):&emsp;</label>
+        <label>Book&nbsp;Category(Please select from box):&emsp;</label>
         <select name="genreID">
         <!-- Using for loop to display all the avilable job title in the job table  -->
         <?php foreach ($all_genres as $all_genre) : ?>
