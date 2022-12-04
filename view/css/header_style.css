@@ -109,10 +109,10 @@ body {
 }
 
 /* The opacity effect on the rest of the screen when you put your mouse on one book
-    the smaller the opacity is the stronger its effect is*/
+    the smaller the opacity is the stronger its effect is
 #books:hover figure:not(:hover) {
     opacity: 0.35;
-}
+} */
 
   /* The border around each book*/
 div#books figure {
