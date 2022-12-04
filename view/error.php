@@ -9,15 +9,24 @@
 include('../view/header.php');
 ?>
 
-  <main>
+<main>
+
+    <?php if(isset($error_msg)) {?>
+
+      <div class="error-wrapper" style="text-align:center">
+        <h1><?php echo $error_msg; ?></h1>
+      </div>
+
+    <?php }?>
     
+    <?php if(!isset($error_msg)) {?>
     <div class="error-wrapper" style="text-align:center">
         <h1>Ouups!! Something went wrong!</h1>
     </div>
-      
+    <?php }?>
 
 
-  </main> 
+</main> 
   
 
 <?php include('../view/footer.php'); ?>
