@@ -110,8 +110,8 @@ error_reporting (E_ALL);
                     
                     <button class="dropbtn" disabled>',$buttonName,'</button>
                     <div class="dropdown-content">
-                        <a href=',$href,'>Edit Profile</a>
-                        <a href="#">Setting</a>
+                        <a href="../controller/index.php?user_Action=profile">Edit Profile</a>
+                        
                         <a href="../controller/index.php?user_Action=logout">Logout</a>
                     </div>
                 </div>
