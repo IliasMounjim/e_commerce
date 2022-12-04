@@ -6,6 +6,7 @@ require("../model/retrieve_books.php");
 require("../model/user_db.php");
 require("../model/add_delete_update_books.php");
 require("../model/order_functions.php");
+require("../model/genre.php");
 
 // Check user action to determine what they want to do
 $user_Action = filter_input (INPUT_POST, 'user_Action');
@@ -126,6 +127,27 @@ if($user_Action == 'categories')
     include('../view/categories.php');
 }
 
+
+if($user_Action == 'add_categories')
+{
+    if(isset($_POST['genreName']))
+    {
+        // get new genre name
+        $genreName = filter_input(INPUT_POST, 'genreName');
+
+        $success_msg = add_genre($genreName);
+
+        $user_Action = 'admin_categories';
+    }
+    else
+    {
+        include('../view/error.php');
+    }
+    
+
+}
+
+
 /* // 12/2/2022  this ask user for a genre they want to find */ 
 if($user_Action == 'admin_categories')
 {
@@ -208,9 +230,11 @@ if($user_Action =='result_display')
 }
 
 
-if($user_Action == 'authors')
+// 12/04/2022
+if($user_Action == 'add_new_categories')
 {
-    include('../view/authors.php');
+
+    include('../view/add_new_categories.php');
 }
 
 // 12/2/2022

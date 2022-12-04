@@ -23,4 +23,8 @@ include('../view/admin_header.php');
 
 </main> 
   
-<?php include('../view/admin_footer.php'); ?>
+<?php 
+$admin_categories = true;
+
+include('../view/admin_footer.php'); 
+?>
