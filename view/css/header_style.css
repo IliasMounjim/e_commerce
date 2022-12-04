@@ -366,7 +366,7 @@ a.toCart:hover{
 
 .added {
     padding: 20px;
-    background-color: #217943;
+    background-color: #5078e7;
     color: white;
     margin-bottom: 15px;
   }
@@ -458,4 +458,13 @@ a.toCart:hover{
 
 .middle{
     margin-left: 50em;
+}
+
+
+.huge_button{
+    background:#4070f4;
+ 
+    color:rgb(255, 255, 255);
+    width: 1500px;
+    height: 55px;
 }
