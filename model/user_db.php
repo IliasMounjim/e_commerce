@@ -1,4 +1,5 @@
 <?php
+require ('../model/database.php');
 
 function get_user($userID) {
     global $db;
