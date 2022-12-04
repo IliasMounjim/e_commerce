@@ -13,7 +13,7 @@ include('../view/header.php');
 
     <!-- wraper and figure css -->
     <div id="border_book_page">
-    <div id="book_page">
+        <div id="book_page">
         <figure>
 
             <!-- Display book image on the left -->
@@ -46,18 +46,18 @@ include('../view/header.php');
    <!-- order button -->
     <?php if (isset($_COOKIE['userName'])) {?>
      <?php $userID = filter_input (INPUT_COOKIE, 'userName', FILTER_VALIDATE_INT); ?>
-        <form action="../controller/index.php" method="post">
-        <input type="hidden" name="user_Action" value="add_orders">
-        <a class="toCart" type="submit" >Order&nbsp;It</a>
-        <input type="hidden" name="userID" value="<?php echo $userID;?>">
-        <input type="hidden" name="bookID" value="<?php echo $select_book['bookID'];?>">
+        <form action="." method="post">
+            <input name="toCart a" class="toCart" style="width: 600px;" type="submit" value="Order&nbsp;It">
+            <input type="hidden" name="user_Action" value="add_orders">
+            <input type="hidden" name="userID" value="<?php echo $userID;?>">
+            <input type="hidden" name="bookID" value="<?php echo $select_book['bookID'];?>">
         </form>
     <?php }?>
         
     <?php if (!isset($_COOKIE['userName'])) {?>
         <br><br><br><br><br><br>
 
-        <a class="button">Please login to continue purchase</a>
+        <a href="../controller/index.php?user_Action=login"class="button" style="width: 600px;">Please login to continue purchase</a>
     <?php }?>
 </main> 
 

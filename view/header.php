@@ -108,10 +108,10 @@ error_reporting (E_ALL);
         
                 <div class="dropdown">
                     
-                    <button class="dropbtn">',$buttonName,'</button>
+                    <button class="dropbtn" disabled>',$buttonName,'</button>
                     <div class="dropdown-content">
-                        <a href=',$href,'>Edit Profile</a>
-                        <a href="#">Setting</a>
+                        <a href="../controller/index.php?user_Action=profile">Edit Profile</a>
+                        
                         <a href="../controller/index.php?user_Action=logout">Logout</a>
                     </div>
                 </div>
@@ -127,8 +127,13 @@ error_reporting (E_ALL);
             if(!empty($_GET)) {
                 if (isset($current_page)&&$current_page[1] == 'login'){
                     $linkClass.= ' active-nav-link';
+                    $href="../controller/index.php?user_Action=login";
+                    $buttonName="Login";
+
                 } else if (isset($current_page)&& ($current_page[1] == 'register' || $current_page[1] == 'registerAddress' )){ 
                     $linkClass.= ' active-nav-link';
+                    $href="../controller/index.php?user_Action=register";
+                    $buttonName="Signup";
                 }
             }
             echo '<div class="',$linkClass,'">

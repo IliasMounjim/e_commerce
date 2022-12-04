@@ -208,7 +208,7 @@ a.button:hover {
 #c-border {
     width: 90%;
     /* width of the wraper, larger width then more books on each row, now it dsiplays 3 books each row*/
-    max-width: 1000px;
+    max-width: 800px;
     margin: 50px auto;
     /* Font*/
     font-family: Calluna, Arial;
@@ -224,9 +224,9 @@ a.button:hover {
     /* using 80% of the max space*/
     width: 80%;
     /* width of the wraper*/
-    max-width: 1500px;
+    max-width: 900px;
     /* margin to the center of the page*/
-    margin: 100px auto;
+    margin: 50px auto;
     /* Font*/
     font-family: Calluna, Arial;
 }
@@ -236,7 +236,7 @@ a.button:hover {
 
 div#book_page figure {
     /* move to right, down */
-    margin: 0 50px 35px;
+    margin: 0 20px 15px;
     /* space in between buy button and border */
     padding-bottom: 5px;
     /* opacity of the whole page*/
@@ -276,15 +276,15 @@ div#book_page figure figcaption {
 
 /* add to cart button*/
 
-a.toCart {
+input.toCart {
     /*size of the button*/
     height: 45px;
-    width: 1500px;
+    width: 600px;
     /*color*/
     background: #4070f4;
     display: block;
     /* position of the button*/
-    margin-top: 15em;
+    margin-top: 2em;
     /* text of the button*/
     text-align: center;
     line-height: 40px;

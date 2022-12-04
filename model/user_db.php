@@ -91,7 +91,7 @@ function get_userPriv($emailAddress) {
         else {
             return 0;
         }
-
+        
     } catch (PDOException $e) {
         $error_message = $e->getMessage();
         echo "<p>An error occurred while fetching user: $error_message </p>";
