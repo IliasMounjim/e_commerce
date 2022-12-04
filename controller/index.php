@@ -506,7 +506,7 @@ if($user_Action == 'logged_in')
 
         $value=$id;
         $name='userName';
-        $emailAddress = valid_userName($emailAddress);
+        $userName = valid_userName($emailAddress);
         $expiration = time()+(60*60*24*7);
 
         setcookie($name, $value, $expiration);
