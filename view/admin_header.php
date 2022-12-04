@@ -73,12 +73,64 @@ error_reporting (E_ALL);
 
 
     <div class="right-side">
-    <div class="nav-link-wrapper <?php if (isset($current_page)&&$current_page[1] == 'login') echo 'active-nav-link';?>">
-        <a href="../controller/index.php?user_Action=login">Login</a>
-    </div>
-    <div class="nav-link-wrapper <?php if (isset($current_page)&&$current_page[1] == 'register') echo 'active-nav-link';?>">
-        <a href="../controller/index.php?user_Action=register">Sign Up</a>
-    </div>
+    <?php 
+        $href="../controller/index.php?user_Action=login";
+        $buttonName="Login";
+    
+        if(!empty($_GET)) {
+            if (isset($current_page)&& ($current_page[1] == 'register' || $current_page[1] == 'registerAddress' )){
+                $href="../controller/index.php?user_Action=register";
+                $buttonName="Signup";
+            }
+
+        }
+
+        if (isset($_COOKIE['userName'])) {
+            $value = filter_input (INPUT_COOKIE, 'userName', FILTER_VALIDATE_INT);
+            //print_r($_COOKIE);
+            if (!($value === false || $value == 0)) {
+                $user = get_user($value);
+                $customer = $user['userName'];
+                //echo "USER: ", $customer;
+                $buttonName=$customer;
+                $href="../controller/index.php?user_Action=admin_profile";
+
+                echo '<div class="nav-link-wrapper">
+        
+                <div class="dropdown">
+                    
+                    <button class="dropbtn">',$buttonName,'</button>
+                    <div class="dropdown-content">
+                        <a href="#">Setting</a>
+                        <a href="../controller/index.php?user_Action=logout">Logout</a>
+                    </div>
+                </div>
+        
+            </div>';
+            
+
+                
+            }
+        }
+        else{
+            $linkClass="nav-link-wrapper";
+            if(!empty($_GET)) {
+                if (isset($current_page)&&$current_page[1] == 'login'){
+                    $linkClass.= ' active-nav-link';
+                } else if (isset($current_page)&& ($current_page[1] == 'register' || $current_page[1] == 'registerAddress' )){ 
+                    $linkClass.= ' active-nav-link';
+                }
+            }
+            echo '<div class="',$linkClass,'">
+            <a href=',$href,'>',$buttonName,'</a>
+        </div>';
+
+            
+
+        }
+
+    ?>
+
 
     
     <div class="brand">
