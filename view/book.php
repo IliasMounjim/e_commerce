@@ -53,6 +53,12 @@ include('../view/header.php');
         <input type="hidden" name="bookID" value="<?php echo $select_book['bookID'];?>">
         </form>
     <?php }?>
+        
+    <?php if (!isset($_COOKIE['userName'])) {?>
+        <br><br><br><br><br><br>
+
+        <a class="button">Please login to continue purchase</a>
+    <?php }?>
 </main> 
 
 <?php include('../view/footer.php'); ?>
