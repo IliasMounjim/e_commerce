@@ -362,14 +362,40 @@ if($user_Action == 'admin_books')
 }
 
 
-
+// 12/03/2022 new
 if($user_Action == 'orders')
 {
 
+    if (isset($_COOKIE['userName'])) 
+    {
+        $userID = filter_input (INPUT_COOKIE, 'userName', FILTER_VALIDATE_INT);
 
+        // this store all the order info including order id, user id, book id
+        $order_info = get_order_info($userID);
 
+        if(sizeof($order_info) == 0)
+        {
+            $error_msg = "Hey, you haven't ordered anything yet.";
+            include('../view/error.php');
+            exit();
+        }
+        // get all ordered books
+        $all_ordered_books = [];
+        for($x = 0; $x < sizeof($order_info); $x++)
+        {
+            $book = select_by_id($order_info[$x]['bookID']);
+            array_push($all_ordered_books, $book);
+        }
 
-    include('../view/orders.php');
+        $user_address = get_address_info($userID);
+
+        include('../view/orders.php');
+    }
+    else
+    {   
+        $error_msg = "Please login to view your orders.";
+        include('../view/error.php');
+    }
 }
 
 
