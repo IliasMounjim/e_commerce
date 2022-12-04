@@ -12,6 +12,13 @@ include('../view/header.php');
 
 <main>
     
+    <!-- display added a book to order msg box  -->
+    <?php if(isset($added_message)){?>
+        <div class="added">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <?php echo $added_message ;?>
+        </div>
+    <?php } ?>
 
     <!-- display added a new employee message box  -->
     <?php if(isset($error_msg)){?>
