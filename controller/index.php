@@ -83,7 +83,7 @@ if($user_Action == 'add_orders')
         $userID = filter_input(INPUT_POST, 'userID');
         $bookID = filter_input(INPUT_POST, 'bookID');
 
-        add_orders($userID, $bookID);
+        $added_message=add_orders($userID, $bookID);
 
         $user_Action ='home';
         
