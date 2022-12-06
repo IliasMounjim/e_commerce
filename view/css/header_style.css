@@ -11,8 +11,8 @@ body {
 .nav-wrapper {
     display: flex;
     justify-content: space-between;
-    padding: 30px;
-    height: 120px;
+    padding: 20px;
+    height: 75px;
     /*color*/
     background: #e5f5fc;
 }
@@ -73,6 +73,8 @@ body {
 
 
 /*  Sign up sign in 
+
+#############################################################################  
 */
 
 
@@ -84,7 +86,7 @@ body {
     max-width: 1450px;
     margin: 50px auto;
     /* Font*/
-    font-family: Calluna, Arial;
+    font-family: "Lato", Calluna, Arial;
 }
 
 
@@ -125,7 +127,8 @@ div#books figure {
     display: inline-block;
     background: #FEFEFE;
     border: 2px solid #3a56a3;
-    box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+    border-radius: 8px;
+    box-shadow: 0px 8px 12px 2px rgba(34, 25, 25, 0.4);
     /* move to right, down */
     margin: 0 20px 35px;
     /* text don't break*/
@@ -154,9 +157,12 @@ div#books figure img {
     /* Set image size */
     width: 335px;
     height: 385px;
-    padding-bottom: 15px;
+    margin: 1px;
+    /* padding-bottom: 15px;
     padding-left: 2.5em;
-    margin-bottom: 5px;
+    margin-bottom: 5px; */
+    border-radius: 8px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -166,10 +172,11 @@ div#books figure figcaption {
     font-size: .9rem;
     color: rgb(12, 12, 12);
     line-height: 1.5;
-    height: 60px;
+    height: 40px;
     /*bold or not */
     font-weight: 1000;
     text-overflow: ellipsis;
+    margin-top: 5px;
 }
 
 
@@ -185,7 +192,7 @@ a.button {
     transition: all 0.1s linear;
     text-decoration: none;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-    border-radius: 3px;
+    border-radius: 5px;
     border-bottom: 3px solid #4070f4;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
@@ -226,7 +233,7 @@ a.button:hover {
     /* width of the wraper*/
     max-width: 900px;
     /* margin to the center of the page*/
-    margin: 50px auto;
+    margin: 25px auto;
     /* Font*/
     font-family: Calluna, Arial;
 }
@@ -256,10 +263,12 @@ div#book_page figure {
 
 div#book_page figure img {
     /* Set image size */
-    width: 490px;
-    height: 600px;
+    width: 380px;
+    height: 480px;
     /* display on the left*/
     float: left;
+    border-radius: 12px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -267,8 +276,8 @@ div#book_page figure img {
 
 div#book_page figure figcaption {
     /* position of text, move downward and to the right*/
-    padding-top: 5em;
-    margin-left: 38em;
+    padding-top: 2em;
+    margin-left: 28em;
     /*bold or not */
     font-weight: 500;
 }
@@ -293,9 +302,9 @@ input.toCart {
     transition: all 0.2s;
     text-decoration: none;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-    border-radius: 3px;
-    border-bottom: 10px solid #4070f4;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    /* border-bottom: 10px solid #4070f4; */
+    /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); */
 }
 
 
@@ -321,12 +330,17 @@ a.toCart:hover {
     height: 50px;
 }
 
+::-webkit-input-placeholder {
+    text-align: center;
+}
+
 .search_box input[type=text] {
     float: none;
     border: none;
     font-size: 17px;
     width: 580px;
-    height: 45px;
+    height: 40px;
+    border-radius: 8px;
 }
 
 .search_box .search-container {
@@ -340,6 +354,7 @@ a.toCart:hover {
     border: none;
     cursor: pointer;
     padding-top: 1em;
+    border-radius: 8px;
 }
 
 
@@ -388,12 +403,18 @@ a.toCart:hover {
 }
 
 
-/*Add books button*/
+/*Add books button
+
+#############################################################################  
+*/
 
 .new_book {
     background-color: #4070f4;
     width: 175px;
     height: 55px;
+    margin-top: 4px;
+    border-radius: 8px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 .add_book_form {
@@ -411,27 +432,35 @@ a.toCart:hover {
 }
 
 .buttons .delete_a_book {
-    background-color: #000000;
+    background-color: #252525;
     color: rgb(255, 255, 255);
-    width: 189px;
-    height: 55px;
+    width: 150px;
+    height: 40px;
     float: right;
+    padding-bottom: 2px;
+    border-radius: 8px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 .buttons .update_a_book {
     background-color: #41bbc4;
     color: rgb(12, 12, 12);
-    width: 189px;
-    height: 55px;
+    width: 150px;
+    height: 40px;
     float: left;
+    padding-bottom: 2px;
+    border-radius: 8px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 .bigger_buttons .delete_a_book {
-    background-color: #000000;
+    background-color: #252525;
     color: rgb(255, 255, 255);
     width: 473px;
     height: 55px;
     float: right;
+    border-radius: 8px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 .bigger_buttons .update_a_book {
@@ -440,13 +469,18 @@ a.toCart:hover {
     width: 473px;
     height: 55px;
     float: left;
+    border-radius: 8px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 .admin_book {
     background: #4070f4;
     color: rgb(255, 255, 255);
-    width: 378px;
+    margin-top: 8px;
+    width: 333px;
     height: 55px;
+    border-radius: 8px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 .middle {
@@ -464,38 +498,7 @@ a.toCart:hover {
 /* Dropdown Button
 
 #############################################################################  
-
-
-.nav-link-wrapper {
-    height: 22px;
-    border-bottom: 1px solid transparent;
-    transition: border-bottom 0.5s;
-}
-
-.active-nav-link {
-    border-bottom: 1px solid black;
-}
-
-.active-nav-link a {
-    color: black !important;
-}
-
-.nav-link-wrapper a {
-    color: #8a8a8a;
-    text-decoration: none;
-    transition: color 0.5s;
-}
-
-.nav-link-wrapper:hover {
-    border-bottom: 1px solid black;
-}
-
-.nav-link-wrapper a:hover {
-    color: black;
-}
-
-
- */
+*/
 
 .dropbtn {
     color: #8a8a8a;

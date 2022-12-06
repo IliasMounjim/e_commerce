@@ -85,6 +85,34 @@ function get_order_info($userID)
     return $order_info;
 }
 
+
+function delete_order($bookID, $bookName){
+    global $db;
+ 
+
+    // Delete target book from database
+    $delete_query = 'DELETE FROM orders WHERE orders.bookID = :bookid LIMIT 1';
+
+    try { 
+        
+        $delete_statement = $db->prepare($delete_query);
+        //bind value
+        $delete_statement->bindValue(':bookid', $bookID);
+        // Execute and frees up connection
+        $delete_statement->execute();
+        $delete_statement->closeCursor();
+    
+        // Return deleted employee's name and id for display
+        $delete = "Successfully removed&emsp;".$bookName."&emsp;from Cart";
+        return $delete;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        echo "<p>An error occurred while fetching user: $error_message </p>";
+    }
+}
+
+
+
 function get_address_info($userID)
 {
     global $db;
