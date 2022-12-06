@@ -29,6 +29,7 @@
     height: 440px;
     width: 200%;
     transition: height 0.2s ease;
+    overflow-y: auto
 }
 
 .container .form {

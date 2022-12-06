@@ -66,7 +66,7 @@ error_reporting (E_ALL);
 
         <input type="hidden" name="user_Action" value="admin_search">
         <input type="text" placeholder="Search.." name="keyWord">
-        <button type="submit"><i class="fa fa-search fa-2x"></i></button>
+        <button type="submit" style="border-radius:12px;"><i class="fa fa-search fa-2x"></i></button>
         
         </form>
     </div></div>
@@ -89,10 +89,11 @@ error_reporting (E_ALL);
             $value = filter_input (INPUT_COOKIE, 'userName', FILTER_VALIDATE_INT);
             //print_r($_COOKIE);
             if (!($value === false || $value == 0)) {
-                $user = get_user($value);
-                $customer = $user['userName'];
+                // $user = get_user($value);
+                // print_r($user);
+                // $customer = $user['userName'];
                 //echo "USER: ", $customer;
-                $buttonName=$customer;
+                $buttonName='ADMIN';
                 $href="../controller/index.php?user_Action=admin_profile";
 
                 echo '<div class="nav-link-wrapper">
@@ -101,7 +102,6 @@ error_reporting (E_ALL);
                     
                     <button class="dropbtn">',$buttonName,'</button>
                     <div class="dropdown-content">
-                        <a href="#">Setting</a>
                         <a href="../controller/index.php?user_Action=logout">Logout</a>
                     </div>
                 </div>

@@ -3,14 +3,20 @@ require ('../model/database.php');
 
 function get_user($userID) {
     global $db;
-    $query = 'SELECT * FROM users
-              WHERE userID = :userID';    
-    $statement = $db->prepare($query);
-    $statement->bindValue(':userID', $userID);
-    $statement->execute();    
-    $user = $statement->fetch();
-    $statement->closeCursor();    
-    return $user;
+    $query = 'SELECT * 
+              FROM users JOIN addresses ON users.userID=addresses.userID
+              WHERE users.userID =  :userID';
+    try {   
+        $statement = $db->prepare($query);
+        $statement->bindValue(':userID', $userID);
+        $statement->execute();    
+        $user = $statement->fetch();
+        $statement->closeCursor();    
+        return $user;
+    } catch(PDOException $e) {
+        $error_message = $e->getMessage();
+        echo "<p>An error occurred while adding user to the database: $error_message </p>";
+    }
 }
 
 
@@ -43,6 +49,66 @@ function add_user($emailAddress, $userPassword, $userName) {
         echo "<p>An error occurred while adding user to the database: $error_message </p>";
     }
     
+}
+
+
+
+function edit_user($userID, $emailAddress, $userPassword, $userName){
+    global $db;
+	$userPassword = password_hash ($userPassword, PASSWORD_BCRYPT);
+    $query = 'UPDATE users SET  emailAddress=:emailAddress, userPassword=:userPassword, userName=:userName
+             WHERE useres.userID = :userID';
+    
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':emailAddress', $emailAddress);
+        $statement->bindValue(':userPassword', $userPassword);
+        $statement->bindValue(':userName', $userName);
+        $statement->bindValue(':userID', $userID);
+        $statement->execute();
+        $statement->closeCursor();
+        // return true;
+
+        //header('Location: index.php');
+        
+    
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        echo "<p>An error occurred while adding user to the database: $error_message </p>";
+    }
+}
+
+
+function edit_Address($addressID, $line1, $line2, $city, $address_State, $zipCode, $phone){
+    global $db;
+    $query = 'UPDATE  addresses SET
+                 line1 =:line1, line2=:line2, city=:city, address_State=:address_State, zipCode=:zipCode, phone=:phone
+            
+              WHERE addresses.addressID = :addressID  ';
+   
+    try {
+        $statement = $db->prepare($query);
+
+        $statement->bindValue(':addressID', $addressID);
+        $statement->bindValue(':line1', $line1);
+        $statement->bindValue(':line2', $line2);
+        $statement->bindValue(':city', $city);
+        $statement->bindValue(':address_State', $address_State);
+        $statement->bindValue(':zipCode', $zipCode);
+        $statement->bindValue(':phone', $phone);
+        
+        $statement->execute();
+        
+        $statement->closeCursor();
+        // return true;
+
+            //header('Location: index.php');
+        
+    
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        echo "<p>An error occurred while adding address to the database: $error_message </p>";
+    }
 }
 
 function add_Admin($emailAddress, $userPassword, $userName) {
@@ -91,7 +157,7 @@ function get_userPriv($emailAddress) {
         else {
             return 0;
         }
-        
+
     } catch (PDOException $e) {
         $error_message = $e->getMessage();
         echo "<p>An error occurred while fetching user: $error_message </p>";
@@ -241,9 +307,3 @@ function valid_userName($emailAddress) {
     }
     
 }
-
-
-
-
-	
-?>

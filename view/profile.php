@@ -9,7 +9,7 @@ include('../view/header.php');
 
 ?>
 
-<link rel="stylesheet" href="../view/css/Login_style.css"/>
+<link rel="stylesheet" href="../view/css/signup_style.css"/>
 
 
 
@@ -19,10 +19,10 @@ include('../view/header.php');
             
     <div class="container">
         <div class="forms">
-            <div class="form login">
-                <span class="title">Profile</span>
-                <form action="."method="post" id="logout">
-                        <input type="hidden" name="user_Action" value="logout">
+            <div class="form signup">
+                <span class="title">Profile Information</span>
+                <form action="."method="post" id="editProfile">
+                        <input type="hidden" name="user_Action" value="update-profile">
                         
                         <?php if (isset($_COOKIE['userName'])) {
                                 $value = filter_input (INPUT_COOKIE, 'userName', FILTER_VALIDATE_INT);
@@ -33,25 +33,63 @@ include('../view/header.php');
                                 else {
                                     $user = get_user($value);
                                     $customer = $user['userName'];
-                                    echo "Hello, ", $customer, "\n";
-                                    $buttonName=$customer;
-                                    $href="../controller/index.php?user_Action=profile";
+                                    ?>
+                                     <input type="hidden" name="userID" value="<?= $user['userID']?>">
+                                    <div class="mb-3">
+                                        <label for="userName">Name</label>
+                                        <input name="userName" id="userName"type="text" class="form-control"value="<?= $user['userName']?>" style="text-transform: capitalize;" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="emailAddress">Email Address</label>
+                                        <input name="emailAddress" id="emailAddress"type="text" class="form-control"value="<?= $user['emailAddress']?>" style="text-transform: capitalize;" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="line1">Address Line 1</label>
+                                        <input name="line1" id="line1"type="text" class="form-control"value="<?= $user['line1']?>" style="text-transform: capitalize;" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="line2">Line 2 (optional)</label>
+                                        <input name="line2" id="line2"type="text" class="form-control"value="<?= $user['line2']?>" style="text-transform: capitalize;" required>
+                                    </div>
+                                    <input name="addressID" type="hidden" value="<?= $user['shipAddressID']?>" style="text-transform: capitalize;" required>
+                                    <div class="mb-3">
+                                        <label for="city">City</label>
+                                        <input name="city" id="city"type="text" class="form-control"value="<?= $user['city']?>" style="text-transform: capitalize;" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="state">State</label>
+                                        <input name="state" id="state"type="text" class="form-control"value="<?= $user['address_State']?>" style="text-transform: capitalize;" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="zipCode">Zip Code</label>
+                                        <input name="zipCode" id="zipCode"type="text" class="form-control"value="<?= $user['zipCode']?>" style="text-transform: capitalize;" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="phone">Phone</label>
+                                        <input name="phone" id="phone"type="text" class="form-control"value="<?= $user['phone']?>" style="text-transform: capitalize;" required>
+                                    </div>
+
+                                    
+                                   
+                                    <?php
                         
                                 }
                             }
                             ?>
-            
                         <div class="input-field button">
-
-                                <input type="submit" value="Log Out" />
-                                            
-                        
+                            <input type="submit" value="Save Changes"> </input>
+                        </div>
+            
+                    </form>
+                    <form action="."method="post" id="logout">
+                        <input type="hidden" name="user_Action" value="logout">
+                        <div class="input-field button">
+                            <input style="background-color:crimson"href="../controller/index.php?user_Action=logout"type="submit" value="Log out"> </input>
                         </div>
                     </form>
-
                     <div class="login-signup">
-                        <span class="text">Change Your info?
-                            <a href="../controller/index.php?user_Action=editProfile"class="text signup-link"><strong>Edit Profile</strong></a>
+                        <span class="text">Change Your Password?
+                            <a href="../controller/index.php?user_Action=editProfile"class="text signup-link"><strong>Click Here</strong></a>
                         </span>
                     </div>
 

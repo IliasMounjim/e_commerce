@@ -47,7 +47,7 @@ include('../view/header.php');
     <?php if (isset($_COOKIE['userName'])) {?>
      <?php $userID = filter_input (INPUT_COOKIE, 'userName', FILTER_VALIDATE_INT); ?>
         <form action="." method="post">
-            <input name="toCart a" class="toCart" style="width: 600px;" type="submit" value="Order&nbsp;It">
+            <input name="toCart a" class="toCart" type="submit" value="Add&nbsp;To Cart">
             <input type="hidden" name="user_Action" value="add_orders">
             <input type="hidden" name="userID" value="<?php echo $userID;?>">
             <input type="hidden" name="bookID" value="<?php echo $select_book['bookID'];?>">

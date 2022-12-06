@@ -5,6 +5,7 @@
     justify-content: center;
     border-radius: 10px;
     background-color: #fff;
+    margin-top: 50px;
 }
 
 
@@ -19,8 +20,9 @@
     background: #4070f4;
     border-radius: 10px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    overflow-y: auto!important;
     margin: 0 20px;
+    margin-top: 10px;
 }
 
 .container .forms {
@@ -36,6 +38,10 @@
     padding: 30px;
     background-color: #fff;
     transition: margin-left 0.18s ease;
+    overflow-y: auto;
+    overflow-y: auto;
+    z-index: 99 !important;
+    margin-top: 50px;
 }
 
 .container .form .title {

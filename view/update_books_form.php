@@ -61,10 +61,12 @@ include('../view/admin_header.php');
             
         <!-- Submit the above form  -->
         <div class= "middle">
-        <label></label>
-        <input  type="submit" value="Update Book"><br><br>
+            <input  type="submit" value="Update Book"> 
+            <a  href="../controller/index.php?user_Action=admin_home_page">Cancel</a><br><br>
         </div>
+
     </form>
+   
     <br><br><br><br><br>
 
 </main>
