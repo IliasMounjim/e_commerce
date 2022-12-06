@@ -469,15 +469,14 @@ if ($user_Action == 'update_profile') {
     $line1 = filter_input(INPUT_POST, 'line1');
     $line2 = filter_input(INPUT_POST, 'line2');
     $city = filter_input(INPUT_POST, 'city');
-
     $address_State = filter_input(INPUT_POST, 'state');
-
     $zipCode = filter_input(INPUT_POST, 'zipCode');
     $phone = filter_input(INPUT_POST, 'phone');
     edit_user($userID, $emailAddress, $userPassword, $userName);
     edit_Address($shipAddressID, $line1, $line2, $city, $address_State, $zipCode, $phone);
     $user_Action="home";
     header("Location: ../controller/index.php?user_Action=home");
+
     
 }
 
@@ -587,3 +586,8 @@ if ($user_Action == 'logout') {
 
 
 
+
+
+
+
+?>
