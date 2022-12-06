@@ -22,7 +22,7 @@ include('../view/header.php');
             <div class="form signup">
                 <span class="title">Profile Information</span>
                 <form action="."method="post" id="update-profile">
-                        <input type="hidden" name="user_Action" value="update-profile">
+                        <input type="hidden" name="user_Action" value="update_profile">
                         
                         <?php if (isset($_COOKIE['userName'])) {
                                 $value = filter_input (INPUT_COOKIE, 'userName', FILTER_VALIDATE_INT);
