@@ -76,7 +76,6 @@ include('../view/header.php');
                                 }
                             }
                             ?>
-                            <input type="hidden" name="user_Action" value="update-profile">
                         <div class="input-field button">
                             <input type="submit" value="Save Changes"> </input>
                         </div>
