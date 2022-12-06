@@ -462,10 +462,10 @@ if ($user_Action == 'addUser') {
 if ($user_Action == 'update_profile') {
     $userID = filter_input(INPUT_POST, 'userID');
     $userName = filter_input(INPUT_POST, 'userName');
-    $emailAddress = filter_input(INPUT_POST, 'email');
+    $emailAddress = filter_input(INPUT_POST, 'emailAddress');
     $userPassword = filter_input(INPUT_POST, 'password');
 
-    $shipAddressID = filter_input(INPUT_POST, 'shipAddressID');
+    $shipAddressID = filter_input(INPUT_POST, 'addressID');
     $line1 = filter_input(INPUT_POST, 'line1');
     $line2 = filter_input(INPUT_POST, 'line2');
     $city = filter_input(INPUT_POST, 'city');

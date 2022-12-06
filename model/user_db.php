@@ -57,7 +57,7 @@ function edit_user($userID, $emailAddress, $userPassword, $userName){
     global $db;
 	$userPassword = password_hash ($userPassword, PASSWORD_BCRYPT);
     $query = 'UPDATE users SET  emailAddress=:emailAddress, userPassword=:userPassword, userName=:userName
-             WHERE useres.userID = :userID';
+             WHERE users.userID = :userID';
     
     try {
         $statement = $db->prepare($query);

@@ -21,7 +21,7 @@ include('../view/header.php');
         <div class="forms">
             <div class="form signup">
                 <span class="title">Profile Information</span>
-                <form action="."method="post" id="editProfile">
+                <form action="."method="post" id="update-profile">
                         <input type="hidden" name="user_Action" value="update-profile">
                         
                         <?php if (isset($_COOKIE['userName'])) {
@@ -76,6 +76,7 @@ include('../view/header.php');
                                 }
                             }
                             ?>
+                            <input type="hidden" name="user_Action" value="update-profile">
                         <div class="input-field button">
                             <input type="submit" value="Save Changes"> </input>
                         </div>
@@ -89,7 +90,7 @@ include('../view/header.php');
                     </form>
                     <div class="login-signup">
                         <span class="text">Change Your Password?
-                            <a href="../controller/index.php?user_Action=editProfile"class="text signup-link"><strong>Click Here</strong></a>
+                            <a href="../controller/index.php?user_Action=profile"class="text signup-link"><strong>Click Here</strong></a>
                         </span>
                     </div>
 

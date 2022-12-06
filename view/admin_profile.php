@@ -49,11 +49,7 @@ include('../view/admin_header.php');
                         </div>
                     </form>
 
-                    <div class="login-signup">
-                        <span class="text">Change Your info?
-                            <a href="../controller/index.php?user_Action=editProfile"class="text signup-link"><strong>Edit Profile</strong></a>
-                        </span>
-                    </div>
+                
 
 
         </div>    
