@@ -469,7 +469,9 @@ if ($user_Action == 'update_profile') {
     $line1 = filter_input(INPUT_POST, 'line1');
     $line2 = filter_input(INPUT_POST, 'line2');
     $city = filter_input(INPUT_POST, 'city');
-    $address_State = filter_input(INPUT_POST, 'address_tate');
+
+    $address_State = filter_input(INPUT_POST, 'state');
+
     $zipCode = filter_input(INPUT_POST, 'zipCode');
     $phone = filter_input(INPUT_POST, 'phone');
     edit_user($userID, $emailAddress, $userPassword, $userName);
@@ -585,8 +587,3 @@ if ($user_Action == 'logout') {
 
 
 
-
-
-
-
-?>
