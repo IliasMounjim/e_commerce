@@ -142,3 +142,6 @@ INSERT INTO `books`(`genreID`, `bookName`, `bookDescription`, `listPrice`, `disc
 
 
 ALTER TABLE `users` ADD CONSTRAINT `users_shipAddressID_fk` FOREIGN KEY (`shipAddressID`) REFERENCES `addresses`(`addressID`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `users` DROP FOREIGN KEY `users_shipAddressID_fk`; ALTER TABLE `users` ADD CONSTRAINT `users_shipAddressID_fk` FOREIGN KEY (`shipAddressID`) REFERENCES `addresses`(`addressID`) ON DELETE CASCADE ON UPDATE RESTRICT;
+ALTER TABLE `addresses` DROP FOREIGN KEY `addresses_ibfk_1`; ALTER TABLE `addresses` ADD CONSTRAINT `addresses_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users`(`userID`) ON DELETE CASCADE ON UPDATE RESTRICT;
+ALTER TABLE `orders` DROP FOREIGN KEY `orders_ibfk_1`; ALTER TABLE `orders` ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users`(`userID`) ON DELETE CASCADE ON UPDATE RESTRICT;
